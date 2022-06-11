@@ -61,13 +61,9 @@ echo Removing temporary_internet_files &:: delete all the files in the temporary
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
 del /f /s /q "%userprofile%\local settings\temporary internet files\*.*" &:: delete all the files in the temporary internet files folder
 
-echo Removing local_settings__temp files &:: delete all the files in the local settings temp folder
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q "%userprofile%\local settings\temp\*.*" &:: delete all the files in the local settings temp folder
-
 echo Removing recent files &:: delete all the files in the recent files folder
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-::del /f /s /q "%userprofile%\recent\*.*" &:: delete all the files in the recent files folder
+del /f /s /q "%userprofile%\recent\*.*" &:: delete all the files in the recent files folder | clearing the recent files folder having some issues on windows 11 (not sure why)
 
 echo Scanning all protected system files, and replacing corrupted files &:: fix all the corrupted files in the system drive
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
@@ -85,6 +81,13 @@ timeout /t 4 &:: timeout is used to make the script wait for 1 seconds
 
 echo Welcome back explorer.exe &:: lets make it look like a real program :)
 explorer.exe &:: restart the explorer.exe which we already killed earlier
+
+:: REMOVING THE TEMP DIRECTORY AT LAST , DUE TO SOME LOOPING ISSUE ON WINDOWS 11 (not sure why)
+echo Finally REMOVING THE TEMP DIRECTORY &:: delete all the files in the temp directory
+echo Removing local_settings__temp files &:: delete all the files in the local settings temp folder
+timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
+del /f /s /q "%userprofile%\local settings\temp\*.*" &:: delete all the files in the local settings temp folder
+
 &:: ================================================================
 &:: AUTHOR: KARTHIK LAL & :: EMAIL: karthik.lal558@gmail.com
 &:: DATE: 10-06-2022
