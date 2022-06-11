@@ -67,11 +67,11 @@ del /f /s /q "%userprofile%\local settings\temp\*.*" &:: delete all the files in
 
 echo Removing recent files &:: delete all the files in the recent files folder
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q "%userprofile%\recent\*.*" &:: delete all the files in the recent files folder
+::del /f /s /q "%userprofile%\recent\*.*" &:: delete all the files in the recent files folder
 
-::echo Scanning all protected system files, and replacing corrupted files &:: fix all the corrupted files in the system drive
-::timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-::sfc /scannow &:: scan all the protected system files and fix if any are corrupted
+echo Scanning all protected system files, and replacing corrupted files &:: fix all the corrupted files in the system drive
+timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
+sfc /scannow &:: scan all the protected system files and fix if any are corrupted
 
 echo Print out directory_tree_list &:: print out the directory tree list
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
