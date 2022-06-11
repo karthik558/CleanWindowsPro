@@ -2,7 +2,7 @@
 color 0a &:: hacker color (just kidding)
 
 title KARTHIK-V1.0 &:: title is needed cuz of the way the console is displayed
-echo YOU ARE USING KARTHIK-V1.0-BETA WINDOWS-CLEAN SCRIPT &:: Ofc we need to mention the tool before starting the script
+echo YOU ARE USING KARTHIK-V1.1-BETA WINDOWS-CLEAN SCRIPT &:: Ofc we need to mention the tool before starting the script
 timeout /t 3 &:: timeout is used to make the script wait for 4 seconds
 
 echo BYE BYE EXPLORER.exe &:: lets make it look like a real program :)
@@ -49,43 +49,46 @@ echo Removing prefetch files &:: delete all the files with .pf in the name
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
 del /f /s /q %windir%\prefetch\*.* &:: delete all the .pf files in the system drive
 
-echo Removing temp files &:: delete all the files with .tmp in the name
+echo Removing temp files &:: delete all the files in temp directory
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-rd /s /q %windir%\temp & md %windir%\temp &:: delete all the .tmp files in the system drive
+rd /s /q %windir%\temp & md %windir%\temp &:: delete all the temp files from the system drive
 
-echo Removing default stored cookies &:: delete all the files with .tmp in the name
+echo Removing default stored cookies &:: delete all the stored cookies in the system drive
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /q %userprofile%\cookies\*.* &:: delete all the .tmp files in the system drive
+del /f /q %userprofile%\cookies\*.* &:: clear all the cookies in the user profile
 
-echo Removing temporary_internet_files &:: delete all the files with .tmp in the name
+echo Removing temporary_internet_files &:: delete all the files in the temporary internet files folder
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q "%userprofile%\local settings\temporary internet files\*.*" &:: delete all the .tmp files in the system drive
+del /f /s /q "%userprofile%\local settings\temporary internet files\*.*" &:: delete all the files in the temporary internet files folder
 
-echo Removing local_settings__temp files &:: delete all the files with .tmp in the name
+echo Removing local_settings__temp files &:: delete all the files in the local settings temp folder
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q "%userprofile%\local settings\temp\*.*" &:: delete all the .tmp files in the system drive
+del /f /s /q "%userprofile%\local settings\temp\*.*" &:: delete all the files in the local settings temp folder
 
-echo Removing recent files &:: delete all the files with .tmp in the name
+echo Removing recent files &:: delete all the files in the recent files folder
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q "%userprofile%\recent\*.*" &:: delete all the .tmp files in the system drive
+del /f /s /q "%userprofile%\recent\*.*" &:: delete all the files in the recent files folder
 
-echo Scanning all protected system files, and replacing corrupted files
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-sfc /scannow &:: scan all the protected system files and fix if any are corrupted
+::echo Scanning all protected system files, and replacing corrupted files &:: fix all the corrupted files in the system drive
+::timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
+::sfc /scannow &:: scan all the protected system files and fix if any are corrupted
 
 echo Print out directory_tree_list &:: print out the directory tree list
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
 dir /s &:: check all directory_trees and print out the list (just for final view)
 
+cls &:: clear the console
+
+echo Thank you for using my script &:: GREETINGS
+echo Regards KARTHIK LAL &:: REGARDS
+timeout /t 4 &:: timeout is used to make the script wait for 1 seconds
+
+echo Welcome back explorer.exe &:: lets make it look like a real program :)
 explorer.exe &:: restart the explorer.exe which we already killed earlier
-
-echo Thank you for using KARTHIK-V1.0 &:: GREETINGS
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-
 &:: ================================================================
 &:: AUTHOR: KARTHIK LAL & :: EMAIL: karthik.lal558@gmail.com
 &:: DATE: 10-06-2022
-&:: WINDOWS CLEANER V1.0-BETA
+&:: WINDOWS CLEANER V1.1-BETA
 &:: TOOLS ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND AND THE AUTHOR IS NOT RESPONSIBLE FOR ANY DAMAGE CAUSED BY THE USE OF THESE TOOLS
 &:: USE AT YOUR OWN RISK
 &:: LICESNSE: GNU GENERAL PUBLIC LICENSE V3.0
