@@ -1,4 +1,19 @@
 @echo off
+
+:: This script will clean the Windows build directory.
+:: FORCE SCRIPT TO WORK ON FULL SCREEN MODE
+:VBSDynamicBuild 
+
+SET TempVBSFile=%temp%\~tmpSendKeysTemp.vbs &:: SET TEMP VBS FILE
+IF EXIST "%TempVBSFile%" DEL /F /Q "%TempVBSFile%" &:: IF TEMP VBS FILE EXISTS, DELETE IT
+
+echo Set WshShell = WScript.CreateObject("WScript.Shell") >>"%TempVBSFile%" &:: ECHO SET WSH SHELL
+echo Wscript.Sleep 1                                    >>"%TempVBSFile%" &:: ECHO WSCRIPT SLEEP 1
+echo WshShell.SendKeys "{F11}"                            >>"%TempVBSFile%" &:: ECHO WSH SHELL SEND KEYS F11
+echo Wscript.Sleep 1                                    >>"%TempVBSFile%" &:: ECHO WSCRIPT SLEEP 1
+
+CSCRIPT //nologo "%TempVBSFile%"
+
 color 0a &:: hacker color (just kidding)
 
 title KARTHIK-V1.0 &:: title is needed cuz of the way the console is displayed
