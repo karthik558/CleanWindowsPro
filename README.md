@@ -9,13 +9,14 @@
 
 * ` Download the latest release of this project from [GitHub](https://github.com/karthik558/clean-windows/releases) `
 * ` Extract the zip file `
-* ` Run the `clean-windows.exe` file as adminisrator privileges `
+* ` Run the clean-windows.exe file as adminisrator privileges `
+* ` Wait for the setup to complete `
 
 ### <b> METHOD 2 </b>
 
-* ` git clone https://github.com/karthik558/clean-windows.git `
-* ` cd clean-windows `
-* ` ./clean-win.bat `
+* ` git clone https://github.com/karthik558/clean-windows.git ` or ` Download the repo from GitHub [ZIP]`
+* ` Run the clean-win.bat file in adminisrator privileges mode `
+* ` Wait for the setup to complete `
 
 ## <b> INFORMATION ABOUT THIS PROJECT </b>
 
