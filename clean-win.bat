@@ -37,8 +37,8 @@ CSCRIPT //nologo "%TempVBSFile%"
 color 0a &:: hacker color (just kidding)
 
 title KARTHIK-V1.0 &:: title is needed cuz of the way the console is displayed
-echo YOU ARE USING KARTHIK-V1.1-BETA WINDOWS-CLEAN SCRIPT &:: Ofc we need to mention the tool before starting the script
-timeout /t 3 &:: timeout is used to make the script wait for 4 seconds
+echo YOU ARE USING KARTHIK LAL WINDOWS CLEAN SCRIPT &:: Ofc we need to mention the tool before starting the script
+timeout /t 3 &:: timeout is used to make the script wait for 3 seconds
 
 echo BYE BYE EXPLORER.exe &:: lets make it look like a real program :)
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
@@ -126,9 +126,10 @@ del /f /s /q "%userprofile%\local settings\temp\*.*" &:: delete all the files in
 &:: ================================================================
 &:: AUTHOR: KARTHIK LAL & :: EMAIL: karthik.lal558@gmail.com
 &:: DATE: 10-06-2022
-&:: WINDOWS CLEANER V1.1-BETA
+&:: WINDOWS CLEANER SCRIPT - STABLE VERSION
 &:: TOOLS ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND AND THE AUTHOR IS NOT RESPONSIBLE FOR ANY DAMAGE CAUSED BY THE USE OF THESE TOOLS
 &:: USE AT YOUR OWN RISK
+&:: FORCED TO RUN ONLY WITH ADMINISTRATOR PRIVILEGES.
 &:: LICESNSE: GNU GENERAL PUBLIC LICENSE V3.0
 &:: OPENSOURCE SOFTWARE LICENSE AGREEMENT FOR WINDOWS DISTRIBUTION SYSTEM (https://www.gnu.org/licenses/gpl-3.0.en.html)
 &:: Copying and distribution of this file, with or without modification, are permitted in any medium without royalty provided the copyright notice and this notice are preserved.
