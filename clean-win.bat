@@ -1,3 +1,23 @@
+:: Exit if , script is run from a non-administrator account
+:: Security check to ensure that the script is being run by an administrator.
+
+@echo off
+
+ggoto check_Permissions &::check permission to continue the script
+
+:check_Permissions
+echo Checking for administrator permissions...
+timeout /t 1 &:: Administrator permissions are required to run this script.
+cls &:: Clear the screen.
+
+net session >nul 2>&1
+if %errorLevel% == 0 (
+    echo Success: You are running this script as an administrator.
+) else (
+    echo Error: You are not running this script as an administrator.
+    exit /b 1
+)
+
 @echo off
 
 :: This script will clean the Windows build directory.
