@@ -3,7 +3,7 @@
 
 @echo off
 
-ggoto check_Permissions &::check permission to continue the script
+goto check_Permissions &::check permission to continue the script
 
 :check_Permissions
 echo Checking for administrator permissions...
