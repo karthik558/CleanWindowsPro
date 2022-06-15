@@ -5,14 +5,13 @@
 
 ## <b> HOW TO USE THIS SCRIPT/SOFTWARE </b>
 
-### <b> METHOD 1 (Recommended) </b>
+### <b> METHOD 1 </b>
 
 * ` Download the latest release of this project from [GitHub](https://github.com/karthik558/clean-windows/releases) `
-* ` Extract the zip file `
-* ` Run the clean-windows.exe file as adminisrator privileges `
-* ` Wait for the setup to complete `
+* ` Run the clean-windows.exe file [Forced to work only on Administrative Privilege Mode] `
+* ` Wait for the setup to complete [It will take some time] `
 
-### <b> METHOD 2 </b>
+### <b> METHOD 2 (Recommended) </b>
 
 * ` git clone https://github.com/karthik558/clean-windows.git ` or ` Download the repo from GitHub [ZIP]`
 * ` Run the clean-win.bat file in adminisrator privileges mode `
@@ -25,7 +24,7 @@
 * TOOLS ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND AND THE AUTHOR IS NOT RESPONSIBLE FOR ANY DAMAGE CAUSED BY THE USE OF THESE TOOLS.
 * USE AT YOUR OWN RISK.
 
-## <b> CONTRIBUTION AND LISCENCE </b>
+## <b> CONTRIBUTION AND LICENCE </b>
 
 * If you want to contribute to this project, then follow github-basic-contribution rules. (inlude signoff and commit message) (https://help.github.com/en/github collaborating-with-issues-and-pull-requests/writing-a-pull-request).
 * LICESNSE: GNU GENERAL PUBLIC LICENSE V3.0.
