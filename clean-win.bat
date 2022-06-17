@@ -36,7 +36,7 @@ CSCRIPT //nologo "%TempVBSFile%"
 
 color 0a &:: hacker color (just kidding)
 
-title KARTHIK-V1.0 &:: title is needed cuz of the way the console is displayed
+title KARTHIK-V1.2-STABLE &:: title is needed cuz of the way the console is displayed
 echo YOU ARE USING KARTHIK LAL WINDOWS CLEAN SCRIPT &:: Ofc we need to mention the tool before starting the script
 timeout /t 3 &:: timeout is used to make the script wait for 3 seconds
 
