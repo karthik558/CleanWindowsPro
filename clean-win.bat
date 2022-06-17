@@ -108,6 +108,10 @@ echo Print out directory_tree_list &:: print out the directory tree list
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
 dir /s &:: check all directory_trees and print out the list (just for final view)
 
+echo Clearing the system restore point &:: clear the system restore point
+timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
+vssadmin delete shadows /all /quiet &:: clear all the system restore point shadows from the system drive (save's some space)
+
 cls &:: clear the console
 
 echo Thank you for using my script &:: GREETINGS
