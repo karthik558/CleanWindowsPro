@@ -1,3 +1,8 @@
+@echo off
+
+color 0a &:: Set console color to dark green (hello hacker console)
+
+:: Security check [1/2]
 :: Exit if , script is run from a non-administrator account
 :: Security check to ensure that the script is being run by an administrator.
 
@@ -18,7 +23,60 @@ if %errorLevel% == 0 (
     exit /b 1
 )
 
+cls &:: Clear the screen.
+
+
+:: Security check [2/2]
+:: EULA Agreement (For the purpose of this script, the EULA is considered to be accepted if the user accepts it.)
+
 @echo off
+
+echo EULA Agreement - Please read the following EULA agreement.
+
+echo [1] This script is provided as is with no warranty of any kind. The author is not responsible for any damage caused by this script.
+echo [2] This script is designed to clean up the Windows operating system.
+echo [3] This operation may take a few minutes/hours to complete.
+echo [4] Please do not close the console window until the script is finished.
+echo [5] This script is fully automated and does not require any user input to complete. (after accepting the EULA)
+echo [6] This script will not clean up the following:
+echo    [*] Windows Defender
+echo    [*] Windows Defender Antivirus
+echo    [*] Windows Defender Online
+echo    [*] Windows Defender SmartScreen
+echo    [*] Windows Defender Trust Center
+echo    [*] Windows Defender Web Scan
+
+@echo off
+
+echo Do you accept the terms of the EULA? (y/n) &:: Accept EULA?
+set /p EULA_Answer= Y/N: &:: Accept EULA?
+
+if /i "%EULA_Answer%" == "Y" (
+    echo EULA Accepted.
+    goto EULA_Accepted
+) else (
+    echo EULA Rejected.
+    goto EULA_Rejected
+)
+
+:EULA_Rejected
+echo [===]
+timeout /t 1 &:: EULA agreement aborted. (1/5)
+cls
+echo [======]
+timeout /t 1 &:: EULA agreement aborted. (2/5)
+cls
+echo [==========]
+timeout /t 1 &:: EULA agreement aborted. (3/5)
+cls
+echo [===============]
+timeout /t 1 &:: EULA agreement aborted. (4/5)
+cls
+echo [====================]
+timeout /t 1 &:: EULA agreement aborted. (5/5)
+exit /b 1
+
+:EULA_Accepted
 
 :: This script will clean the Windows build directory.
 :: FORCE SCRIPT TO WORK ON FULL SCREEN MODE
@@ -33,8 +91,6 @@ echo WshShell.SendKeys "{F11}"                            >>"%TempVBSFile%" &:: 
 echo Wscript.Sleep 1                                    >>"%TempVBSFile%" &:: ECHO WSCRIPT SLEEP 1
 
 CSCRIPT //nologo "%TempVBSFile%"
-
-color 0a &:: hacker color (just kidding)
 
 title KARTHIK-V1.2-STABLE &:: title is needed cuz of the way the console is displayed
 echo YOU ARE USING KARTHIK LAL WINDOWS CLEAN SCRIPT &:: Ofc we need to mention the tool before starting the script
