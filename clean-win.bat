@@ -2,7 +2,7 @@
 
 color 0a &:: Set console color to dark green (hello hacker console)
 
-:: Security check [1/2]
+:: Security check [1/3]
 :: Exit if , script is run from a non-administrator account
 :: Security check to ensure that the script is being run by an administrator.
 
@@ -25,8 +25,18 @@ if %errorLevel% == 0 (
 
 cls &:: Clear the screen.
 
+:: Abort the script if there is any pending restart/reboot.
+:: Security check [2/3]
+:: Abort if any restart is pending
 
-:: Security check [2/2]
+@echo off 
+
+if exist %~dp0\restart.txt (
+    echo Restart pending. Exiting.
+    exit /b 1
+)
+
+:: Security check [3/3]
 :: EULA Agreement (For the purpose of this script, the EULA is considered to be accepted if the user accepts it.)
 
 @echo off
