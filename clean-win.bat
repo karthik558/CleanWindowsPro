@@ -100,6 +100,9 @@ echo BYE BYE EXPLORER.exe &:: lets make it look like a real program :)
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
 taskkill /f /im explorer.exe &:: kill the explorer.exe
 
+echo Clearing DNS cache &:: Clearing DNS cache
+ipconfig /flushdns &:: Flush DNS cache
+
 echo Removing .log files &:: delete all the .log files
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
 del %windir%\KB*.log /f /q  &:: delete all the files with KB in the name
