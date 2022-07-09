@@ -13,6 +13,7 @@ goto check_Permissions &::check permission to continue the script
 :check_Permissions
 echo Checking for administrator permissions...
 timeout /t 1 &:: Administrator permissions are required to run this script.
+
 cls &:: Clear the screen.
 
 net session >nul 2>&1
@@ -35,6 +36,24 @@ if exist %~dp0\restart.txt (
     echo Restart pending. Exiting.
     exit /b 1
 )
+
+:: This script will clean the Windows build directory.
+:: FORCE SCRIPT TO WORK ON FULL SCREEN MODE
+:VBSDynamicBuild 
+
+SET TempVBSFile=%temp%\~tmpSendKeysTemp.vbs &:: SET TEMP VBS FILE
+IF EXIST "%TempVBSFile%" DEL /F /Q "%TempVBSFile%" &:: IF TEMP VBS FILE EXISTS, DELETE IT
+
+echo Set WshShell = WScript.CreateObject("WScript.Shell") >>"%TempVBSFile%" &:: ECHO SET WSH SHELL
+echo Wscript.Sleep 1                                    >>"%TempVBSFile%" &:: ECHO WSCRIPT SLEEP 1
+echo WshShell.SendKeys "{F11}"                            >>"%TempVBSFile%" &:: ECHO WSH SHELL SEND KEYS F11
+echo Wscript.Sleep 1                                    >>"%TempVBSFile%" &:: ECHO WSCRIPT SLEEP 1
+
+CSCRIPT //nologo "%TempVBSFile%"
+
+title KARTHIK-V1.2-STABLE &:: title is needed cuz of the way the console is displayed
+echo YOU ARE USING KARTHIK LAL WINDOWS CLEAN SCRIPT &:: Ofc we need to mention the tool before starting the script
+timeout /t 3 &:: timeout is used to make the script wait for 3 seconds
 
 :: Security check [3/3]
 :: EULA Agreement (For the purpose of this script, the EULA is considered to be accepted if the user accepts it.)
@@ -70,6 +89,7 @@ if /i "%EULA_Answer%" == "Y" (
 )
 
 :EULA_Rejected
+
 echo [===]
 timeout /t 1 &:: EULA agreement aborted. (1/5)
 cls
@@ -88,26 +108,9 @@ exit /b 1
 
 :EULA_Accepted
 
-:: This script will clean the Windows build directory.
-:: FORCE SCRIPT TO WORK ON FULL SCREEN MODE
-:VBSDynamicBuild 
-
-SET TempVBSFile=%temp%\~tmpSendKeysTemp.vbs &:: SET TEMP VBS FILE
-IF EXIST "%TempVBSFile%" DEL /F /Q "%TempVBSFile%" &:: IF TEMP VBS FILE EXISTS, DELETE IT
-
-echo Set WshShell = WScript.CreateObject("WScript.Shell") >>"%TempVBSFile%" &:: ECHO SET WSH SHELL
-echo Wscript.Sleep 1                                    >>"%TempVBSFile%" &:: ECHO WSCRIPT SLEEP 1
-echo WshShell.SendKeys "{F11}"                            >>"%TempVBSFile%" &:: ECHO WSH SHELL SEND KEYS F11
-echo Wscript.Sleep 1                                    >>"%TempVBSFile%" &:: ECHO WSCRIPT SLEEP 1
-
-CSCRIPT //nologo "%TempVBSFile%"
-
-title KARTHIK-V1.2-STABLE &:: title is needed cuz of the way the console is displayed
-echo YOU ARE USING KARTHIK LAL WINDOWS CLEAN SCRIPT &:: Ofc we need to mention the tool before starting the script
-timeout /t 3 &:: timeout is used to make the script wait for 3 seconds
-
 echo BYE BYE EXPLORER.exe &:: lets make it look like a real program :)
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
+cls
 taskkill /f /im explorer.exe &:: kill the explorer.exe
 
 echo Clearing DNS cache &:: Clearing DNS cache
