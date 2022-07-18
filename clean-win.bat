@@ -136,7 +136,7 @@ echo Remvoing *.gid files &:: delete all the files with .gid in the name
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
 del /f /s /q %systemdrive%\*.gid &:: delete all the .gid files in the system drive
 
-echo Removing .chk files &:: delete all the files with .chk in the name
+echo Removing *.chk files &:: delete all the files with .chk in the name
 timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
 del /f /s /q %systemdrive%\*.chk &:: delete all the .chk files in the system drive
 

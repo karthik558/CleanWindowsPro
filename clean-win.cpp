@@ -268,18 +268,17 @@ int main()
 
     getch ();
     return 0;
-
-    // End of the script
-    //================================================================
-    //AUTHOR: KARTHIK LAL & :: EMAIL: karthik.lal558@gmail.com
-    //DATE: 10-06-2022
-    //WINDOWS CLEANER SCRIPT - STABLE VERSION
-    //TOOLS ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND AND THE AUTHOR IS NOT RESPONSIBLE FOR ANY DAMAGE CAUSED BY THE USE OF THESE TOOLS
-    //USE AT YOUR OWN RISK
-    //FORCED TO RUN ONLY WITH ADMINISTRATOR PRIVILEGES.
-    //LICESNSE: GNU GENERAL PUBLIC LICENSE V3.0
-    //OPENSOURCE SOFTWARE LICENSE AGREEMENT FOR WINDOWS DISTRIBUTION SYSTEM (https://www.gnu.org/licenses/gpl-3.0.en.html)
-    //Copying and distribution of this file, with or without modification, are permitted in any medium without royalty provided the copyright notice and this notice are preserved.
-    //Copyright (c) 2022 KARTHIK LAL
-    //================================================================
 }
+
+/*================================================================
+AUTHOR: KARTHIK LAL & :: EMAIL: karthik.lal558@gmail.com
+DATE: 10-06-2022
+WINDOWS CLEANER SCRIPT - STABLE VERSION
+TOOLS ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND AND THE AUTHOR IS NOT RESPONSIBLE FOR ANY DAMAGE CAUSED BY THE USE OF THESE TOOLS
+USE AT YOUR OWN RISK
+FORCED TO RUN ONLY WITH ADMINISTRATOR PRIVILEGES.
+LICESNSE: GNU GENERAL PUBLIC LICENSE V3.0
+OPENSOURCE SOFTWARE LICENSE AGREEMENT FOR WINDOWS DISTRIBUTION SYSTEM (https://www.gnu.org/licenses/gpl-3.0.en.html)
+Copying and distribution of this file, with or without modification, are permitted in any medium without royalty provided the copyright notice and this notice are preserved.
+Copyright (c) 2022 KARTHIK LAL
+================================================================*/
