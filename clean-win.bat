@@ -1,34 +1,55 @@
 @echo off
 
-color 0a &:: Set console color to dark green (hello hacker console)
+@REM Set console color to dark green (hello hacker console)
+color 0a
 
-:: Security check [1/3]
-:: Exit if , script is run from a non-administrator account
-:: Security check to ensure that the script is being run by an administrator.
+@REM Print banner (hello hacker console)                                                                                        
+                                                                                        
+echo `7MMF' `YMM'       db      `7MM"""Mq. MMP""MM""YMM `7MMF'  `7MMF'`7MMF'`7MMF' `YMM'     
+echo   MM   .M'        ;MM:       MM   `MM.P'   MM   `7   MM      MM    MM    MM   .M'       
+echo   MM .d"         ,V^MM.      MM   ,M9      MM        MM      MM    MM    MM .d"         
+echo   MMMMM.        ,M  `MM      MMmmdM9       MM        MMmmmmmmMM    MM    MMMMM.         
+echo   MM  VMA       AbmmmqMA     MM  YM.       MM        MM      MM    MM    MM  VMA        
+echo   MM   `MM.    A'     VML    MM   `Mb.     MM        MM      MM    MM    MM   `MM.      
+echo .JMML.   MMb..AMA.   .AMMA..JMML. .JMM.  .JMML.    .JMML.  .JMML..JMML..JMML.   MMb.    
+echo .
+echo .                                                         
+echo  .M"""bgd   .g8"""bgd `7MM"""Mq.  `7MMF'`7MM"""Mq. MMP""MM""YMM                         
+echo ,MI    "Y .dP'     `M   MM   `MM.   MM    MM   `MM.P'   MM   `7                         
+echo `MMb.     dM'       `   MM   ,M9    MM    MM   ,M9      MM                              
+echo   `YMMNq. MM            MMmmdM9     MM    MMmmdM9       MM                              
+echo .     `MM MM.           MM  YM.     MM    MM            MM                              
+echo Mb     dM `Mb.     ,'   MM   `Mb.   MM    MM            MM                              
+echo P"Ybmmd"    `"bmmmd'  .JMML. .JMM..JMML..JMML.        .JMML.                            
+echo .
+echo .                                                                                        
+@REM Security check [1/3]
+@REM Exit if , script is run from a non-administrator account
+@REM Security check to ensure that the script is being run by an administrator.
 
 @echo off
-
-goto check_Permissions &::check permission to continue the script
+@REM Check permission to continue the script
+goto check_Permissions
 
 :check_Permissions
-echo Checking for administrator permissions...
-timeout /t 1 &:: Administrator permissions are required to run this script.
-
-cls &:: Clear the screen.
+echo CHECKING FOR ADMINISTRATOR PERMISSIONS
+@REM Administrator permissions are required to run this script.
+timeout /t 1
 
 net session >nul 2>&1
 if %errorLevel% == 0 (
     echo Success: You are running this script as an administrator.
 ) else (
     echo Error: You are not running this script as an administrator.
+    :: Pause the script until the user hits any key.
+    pause >nul 2>&1
     exit /b 1
 )
 
-cls &:: Clear the screen.
 
-:: Abort the script if there is any pending restart/reboot.
-:: Security check [2/3]
-:: Abort if any restart is pending
+@REM Abort the script if there is any pending restart/reboot.
+@REM Security check [2/3]
+@REM Abort if any restart is pending
 
 @echo off 
 
@@ -37,26 +58,35 @@ if exist %~dp0\restart.txt (
     exit /b 1
 )
 
-:: This script will clean the Windows build directory.
-:: FORCE SCRIPT TO WORK ON FULL SCREEN MODE
+@REM This script will clean the Windows build directory.
+@REM FORCE SCRIPT TO WORK ON FULL SCREEN MODE
 :VBSDynamicBuild 
 
-SET TempVBSFile=%temp%\~tmpSendKeysTemp.vbs &:: SET TEMP VBS FILE
-IF EXIST "%TempVBSFile%" DEL /F /Q "%TempVBSFile%" &:: IF TEMP VBS FILE EXISTS, DELETE IT
+@REM SET TEMP VBS FILE
+SET TempVBSFile=%temp%\~tmpSendKeysTemp.vbs
+@REM IF TEMP VBS FILE EXISTS, DELETE IT
+IF EXIST "%TempVBSFile%" DEL /F /Q "%TempVBSFile%"
 
-echo Set WshShell = WScript.CreateObject("WScript.Shell") >>"%TempVBSFile%" &:: ECHO SET WSH SHELL
-echo Wscript.Sleep 1                                    >>"%TempVBSFile%" &:: ECHO WSCRIPT SLEEP 1
-echo WshShell.SendKeys "{F11}"                            >>"%TempVBSFile%" &:: ECHO WSH SHELL SEND KEYS F11
-echo Wscript.Sleep 1                                    >>"%TempVBSFile%" &:: ECHO WSCRIPT SLEEP 1
+@REM ECHO SET WSH SHELL
+echo Set WshShell = WScript.CreateObject("WScript.Shell") >>"%TempVBSFile%"
+@REM ECHO WSCRIPT SLEEP 1
+echo Wscript.Sleep 1                                    >>"%TempVBSFile%"
+@REM ECHO WSH SHELL SEND KEYS F11
+echo WshShell.SendKeys "{F11}"                            >>"%TempVBSFile%"
+@REM ECHO WSCRIPT SLEEP 1
+echo Wscript.Sleep 1                                    >>"%TempVBSFile%"
 
 CSCRIPT //nologo "%TempVBSFile%"
 
-title KARTHIK-V1.2-STABLE &:: title is needed cuz of the way the console is displayed
-echo YOU ARE USING KARTHIK LAL WINDOWS CLEAN SCRIPT &:: Ofc we need to mention the tool before starting the script
-timeout /t 3 &:: timeout is used to make the script wait for 3 seconds
+@REM Set Title is needed cuz of the way the console is displayed
+title KARTHIK-V1.2-STABLE
+@REM Ofc we need to mention the tool before starting the script
+echo YOU ARE USING KARTHIK LAL WINDOWS CLEAN SCRIPT
+@REM Timeout is used to make the script wait for 3 seconds
+timeout /t 3
 
-:: Security check [3/3]
-:: EULA Agreement (For the purpose of this script, the EULA is considered to be accepted if the user accepts it.)
+@REM Security check [3/3]
+@REM EULA Agreement (For the purpose of this script, the EULA is considered to be accepted if the user accepts it.)
 
 @echo off
 
@@ -77,8 +107,12 @@ echo    [*] Windows Defender Web Scan
 
 @echo off
 
-echo Do you accept the terms of the EULA? (y/n) &:: Accept EULA?
-set /p EULA_Answer= Y/N: &:: Accept EULA?
+@REM Accept Prompt
+@REM Accept EULA?
+echo Do you accept the terms of the EULA? (y/n)
+@REM If the user does not accept the EULA, the script will exit.
+@REM Accept EULA?
+set /p EULA_Answer= Y/N:
 
 if /i "%EULA_Answer%" == "Y" (
     echo EULA Accepted.
@@ -91,123 +125,207 @@ if /i "%EULA_Answer%" == "Y" (
 :EULA_Rejected
 
 echo [===]
-timeout /t 1 &:: EULA agreement aborted. (1/5)
+@REM EULA agreement aborted. (1/5)
+timeout /t 1
 cls
 echo [======]
-timeout /t 1 &:: EULA agreement aborted. (2/5)
+@REM EULA agreement aborted. (2/5)
+timeout /t 1
 cls
 echo [==========]
-timeout /t 1 &:: EULA agreement aborted. (3/5)
+@REM EULA agreement aborted. (3/5)
+timeout /t 1
 cls
 echo [===============]
-timeout /t 1 &:: EULA agreement aborted. (4/5)
+@REM EULA agreement aborted. (4/5)
+timeout /t 1
 cls
 echo [====================]
-timeout /t 1 &:: EULA agreement aborted. (5/5)
+@REM EULA agreement aborted. (5/5)
+timeout /t 1
 exit /b 1
 
 :EULA_Accepted
 
-echo BYE BYE EXPLORER.exe &:: lets make it look like a real program :)
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
+@REM lets make it look like a real program :)
+echo BYE BYE EXPLORER.exe
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1
+@REM Clear the screen
 cls
-taskkill /f /im explorer.exe &:: kill the explorer.exe
+@REM Kill the explorer.exe
+taskkill /f /im explorer.exe
 
-echo Clearing DNS cache &:: Clearing DNS cache
-ipconfig /flushdns &:: Flush DNS cache
+@REM Clearing DNS cache
+echo Clearing DNS cache
+@REM Flush DNS cache
+ipconfig /flushdns
 
-echo Removing .log files &:: delete all the .log files
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del %windir%\KB*.log /f /q  &:: delete all the files with KB in the name
+@REM Delete all the .log files
+echo Removing .log files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1
+@REM Delete all the files with KB in the name
+del %windir%\KB*.log /f /q
 
-echo Removing System Tempory Files &:: delete all the files in the system tempory folder
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q %systemdrive%\*.tmp &:: delete all the .tmp files in the system drive
+@REM Delete all the files in the system tempory folder
+echo Removing System Tempory Files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1
+@REM Delete all the .tmp files in the system drive
+del /f /s /q %systemdrive%\*.tmp
 
-echo Removing *_mp files &:: delete all the files with _mp in the name
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q %systemdrive%\*._mp &:: delete all the ._mp files in the system drive
+@REM Delete all the files with _mp in the name
+echo Removing *_mp files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1
+@REM Delete all the ._mp files in the system drive
+del /f /s /q %systemdrive%\*._mp
 
-echo Removing *.log files &:: delete all the files with .log in the name
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q %systemdrive%\*.log &:: delete all the .log files in the system drive
+@REM Delete all the files with .log in the name
+echo Removing *.log files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1
+@REM Delete all the .log files in the system drive
+del /f /s /q %systemdrive%\*.log 
 
-echo Remvoing *.gid files &:: delete all the files with .gid in the name
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q %systemdrive%\*.gid &:: delete all the .gid files in the system drive
+@REM delete all the files with .gid in the name
+echo Removing *.gid files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1
+@REM Delete all the .gid files in the system drive
+del /f /s /q %systemdrive%\*.gid
 
-echo Removing *.chk files &:: delete all the files with .chk in the name
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q %systemdrive%\*.chk &:: delete all the .chk files in the system drive
+@REM Delete all the files with .chk in the name
+echo Removing *.chk files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Delete all the .chk files in the system drive
+del /f /s /q %systemdrive%\*.chk 
 
-echo Removing .old files &:: delete all the files with .old in the name
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q %systemdrive%\*.old &:: delete all the .old files in the system drive
+@REM Delete all the files with .old in the name
+echo Removing .old files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Delete all the .old files in the system drive
+del /f /s /q %systemdrive%\*.old 
 
-echo Removing recycled files &:: delete all the files in the recycle bin
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q %systemdrive%\recycled\*.* &:: delete all the files in the recycle bin
+@REM Delete all the files in the recycle bin
+echo Removing recycled files 
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Delete all the files in the recycle bin
+del /f /s /q %systemdrive%\recycled\*.* 
 
-echo Removing *.bak files &:: delete all the files with .bak in the name
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q %windir%\*.bak &:: delete all the .bak files in the system drive
+@REM Delete all the files with .bak in the name
+echo Removing *.bak files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Delete all the .bak files in the system drive
+del /f /s /q %windir%\*.bak
 
-echo Removing prefetch files &:: delete all the files with .pf in the name
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q %windir%\prefetch\*.* &:: delete all the .pf files in the system drive
+@REM Delete all the files with .pf in the name
+echo Removing prefetch files 
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Delete all the .pf files in the system drive
+del /f /s /q %windir%\prefetch\*.* 
 
-echo Removing temp files &:: delete all the files in temp directory
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-rd /s /q %windir%\temp & md %windir%\temp &:: delete all the temp files from the system drive
+@REM Delete all the files in temp directory
+echo Removing temp files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Delete all the temp files from the system drive
+rd /s /q %windir%\temp & md %windir%\temp 
 
-echo Removing default stored cookies &:: delete all the stored cookies in the system drive
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /q %userprofile%\cookies\*.* &:: clear all the cookies in the user profile
+@REM Delete all the stored cookies in the system drive
+echo Removing default stored cookies
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Clear all the cookies in the user profile
+del /f /q %userprofile%\cookies\*.* 
 
-echo Removing temporary_internet_files &:: delete all the files in the temporary internet files folder
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q "%userprofile%\local settings\temporary internet files\*.*" &:: delete all the files in the temporary internet files folder
+@REM Delete all the files in the temporary internet files folder
+echo Removing temporary_internet_files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Delete all the files in the temporary internet files folder
+del /f /s /q "%userprofile%\local settings\temporary internet files\*.*" 
 
-echo Removing recent files &:: delete all the files in the recent files folder
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q "%userprofile%\recent\*.*" &:: delete all the files in the recent files folder | clearing the recent files folder having some issues on windows 11 (not sure why)
+@REM Delete all the files in the recent files folder
+echo Removing recent files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Delete all the files in the recent files folder | clearing the recent files folder having some issues on windows 11 (not sure why)
+del /f /s /q "%userprofile%\recent\*.*"
 
-echo Scanning all protected system files, and replacing corrupted files &:: fix all the corrupted files in the system drive
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-sfc /scannow &:: scan all the protected system files and fix if any are corrupted
+@REM Fix all the corrupted files in the system drive
+echo Scanning all protected system files, and replacing corrupted files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Scan all the protected system files and fix if any are corrupted
+sfc /scannow 
 
-echo Print out directory_tree_list &:: print out the directory tree list
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-dir /s &:: check all directory_trees and print out the list (just for final view)
+@REM Print out the directory tree list
+echo Print out directory_tree_list
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Check all directory_trees and print out the list (just for final view)
+dir /s 
 
-echo Clearing the system restore point &:: clear the system restore point
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-vssadmin delete shadows /all /quiet &:: clear all the system restore point shadows from the system drive (save's some space)
+@REM Clear the system restore point
+echo Clearing the system restore point
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Clear all the system restore point shadows from the system drive (save's some space)
+vssadmin delete shadows /all /quiet
 
-cls &:: clear the console
+@REM Clear the console
+cls 
 
-echo Thank you for using my script &:: GREETINGS
-echo Regards KARTHIK LAL &:: REGARDS
-timeout /t 4 &:: timeout is used to make the script wait for 1 seconds
+@REM Lets make it look like a real program :)
+echo Welcome back explorer.exe
+@REM Restart the explorer.exe which we already killed earlier
+explorer.exe 
 
-echo Welcome back explorer.exe &:: lets make it look like a real program :)
-explorer.exe &:: restart the explorer.exe which we already killed earlier
+@REM GREETINGS FROM THE DEVELOPER (KARTHIK LAL) :)
 
-:: REMOVING THE TEMP DIRECTORY AT LAST , DUE TO SOME LOOPING ISSUE ON WINDOWS 11 (not sure why)
-echo Finally REMOVING THE TEMP DIRECTORY &:: delete all the files in the temp directory
-echo Removing local_settings__temp files &:: delete all the files in the local settings temp folder
-timeout /t 1 &:: timeout is used to make the script wait for 1 seconds
-del /f /s /q "%userprofile%\local settings\temp\*.*" &:: delete all the files in the local settings temp folder
+echo .                                                           
+echo .                                                                         
+echo .M"""bgd `7MM"""YMM  `7MM"""YMM      `YMM'   `MM' .g8""8q. `7MMF'   `7MF'
+echo ,MI    "Y   MM    `7    MM    `7        VMA   ,V .dP'    `YM. MM       M  
+echo `MMb.       MM   d      MM   d           VMA ,V  dM'      `MM MM       M  
+echo  `YMMNq.   MMmmMM      MMmmMM            VMMP   MM        MM MM       M  
+echo.     `MM   MM   Y  ,   MM   Y  ,          MM    MM.      ,MP MM       M  
+echo Mb     dM   MM     ,M   MM     ,M          MM    `Mb.    ,dP' YM.     ,M  
+echo P"Ybmmd"  .JMMmmmmMMM .JMMmmmmMMM        .JMML.    `"bmmd"'    `bmmmmd"'  
+echo .                                                                         
+echo .
 
-&:: ================================================================
-&:: AUTHOR: KARTHIK LAL & :: EMAIL: karthik.lal558@gmail.com
-&:: DATE: 10-06-2022
-&:: WINDOWS CLEANER SCRIPT - STABLE VERSION
-&:: TOOLS ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND AND THE AUTHOR IS NOT RESPONSIBLE FOR ANY DAMAGE CAUSED BY THE USE OF THESE TOOLS
-&:: USE AT YOUR OWN RISK
-&:: FORCED TO RUN ONLY WITH ADMINISTRATOR PRIVILEGES.
-&:: LICESNSE: GNU GENERAL PUBLIC LICENSE V3.0
-&:: OPENSOURCE SOFTWARE LICENSE AGREEMENT FOR WINDOWS DISTRIBUTION SYSTEM (https://www.gnu.org/licenses/gpl-3.0.en.html)
-&:: Copying and distribution of this file, with or without modification, are permitted in any medium without royalty provided the copyright notice and this notice are preserved.
-&:: Copyright (c) 2022 KARTHIK LAL
-&:: ================================================================
+@REM PRINT REGARDS MESSAGE TO THE USER
+echo Regards KARTHIK LAL
+@REM Timeout is used to make the script wait for 6 seconds
+timeout /t 6
+
+@REM REMOVING THE TEMP DIRECTORY AT LAST , DUE TO SOME LOOPING ISSUE ON WINDOWS 11 (not sure why)
+@REM Delete all the files in the temp directory
+echo Finally REMOVING THE TEMP DIRECTORY
+@REM Delete all the files in the local settings temp folder
+echo Removing local_settings__temp files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Delete all the files in the local settings temp folder
+del /f /s /q "%userprofile%\local settings\temp\*.*"
+
+@REM ================================================================
+@REM AUTHOR: KARTHIK LAL & :: EMAIL: karthik.lal558@gmail.com
+@REM DATE: 10-06-2022
+@REM WINDOWS CLEANER SCRIPT - STABLE VERSION
+@REM TOOLS ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND AND THE AUTHOR IS NOT RESPONSIBLE FOR ANY DAMAGE CAUSED BY THE USE OF THESE TOOLS
+@REM USE AT YOUR OWN RISK
+@REM FORCED TO RUN ONLY WITH ADMINISTRATOR PRIVILEGES.
+@REM LICESNSE: GNU GENERAL PUBLIC LICENSE V3.0
+@REM OPENSOURCE SOFTWARE LICENSE AGREEMENT FOR WINDOWS DISTRIBUTION SYSTEM (https://www.gnu.org/licenses/gpl-3.0.en.html)
+@REM Copying and distribution of this file, with or without modification, are permitted in any medium without royalty provided the copyright notice and this notice are preserved.
+@REM Copyright (c) 2022 KARTHIK LAL
+@REM ================================================================
