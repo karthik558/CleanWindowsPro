@@ -280,6 +280,12 @@ timeout /t 1
 @REM Clear all the system restore point shadows from the system drive (save's some space)
 vssadmin delete shadows /all /quiet
 
+@REM Clear the windows run history
+echo Clearing the windows run history
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" /f
+
 @REM Clear the console
 cls 
 
