@@ -79,7 +79,7 @@ echo Wscript.Sleep 1                                    >>"%TempVBSFile%"
 CSCRIPT //nologo "%TempVBSFile%"
 
 @REM Set Title is needed cuz of the way the console is displayed
-title KARTHIK-V1.2-STABLE
+title KARTHIK-V2.1-STABLE
 @REM Ofc we need to mention the tool before starting the script
 echo YOU ARE USING KARTHIK LAL WINDOWS CLEAN SCRIPT
 @REM Timeout is used to make the script wait for 3 seconds

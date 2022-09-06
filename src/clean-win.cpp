@@ -25,6 +25,7 @@ int main()
     }
 
     // Security check [2]
+    // CHECKING FOR ADMINISTRATOR PERMISSIONS (ELEVATED PRIVILEGES)
     // Abort if the user does not have administrative rights
     if (!IsUserAnAdmin())
     {
@@ -33,6 +34,7 @@ int main()
     }
 
     // Security check [3]
+    // CHECKING FOR ADMINISTRATOR PERMISSIONS (ELEVATED PRIVILEGES)
     // Abort if the user does not have sufficient rights
     if (!IsUserAdmin())
     {
@@ -52,31 +54,110 @@ int main()
     }
 
     // Set the title of the window
-    SetConsoleTitle("Clean Windows");
+    SetConsoleTitle("CLEAN WIN");
 
     // Display the copyright notice
-    cout << "Copyright (c) 2021-2022, KARTHIK LAL" << endl;
-
     // Display the version number
-    cout << "Version 1.2" << endl;
-
     // Display the date of last update
-    cout << "Last updated: 2022-07-15" << endl;
-
     // Display the author's name
-    cout << "Author: KARTHIK LAL" << endl;
-
     // Display the author's email address
-    cout << "Email: karthik.lal558@gmail.com" << endl;
-
     // Display the author's website
-    cout << "Website: karthiklal.live" << endl;
-
     // Display the author's GitHub repository
+    // Lets the user know that the program is running
+
+    cout << "Copyright (c) 2021-2022, KARTHIK LAL" << endl;
+    cout << "Version 2.1" << endl;
+    cout << "Last updated: 2022-09-06" << endl;
+    cout << "Author: KARTHIK LAL" << endl;
+    cout << "Email: karthik.lal558@gmail.com" << endl;
+    cout << "Website: karthiklal.live" << endl;
     cout << "GitHub: https://github.com/karthik558" << endl;
 
+    // Checking if choco is installed or not
+    if (system("choco -v") == 0)
+    {
+        cout << "Chocolatey is installed." << endl;
+    }
+    else
+    {
+        cout << "Chocolatey is not installed." << endl;
+    }
+
+    // Ask the user if they want to install choco or not (Y/N)
+    cout << "Do you want to install Chocolatey? (Y/N): ";
+    char choco;
+    cin >> choco; // get the user's input and store it in the variable git
+
+    // If the user enters Y or y, then install choco
+    if (choco == 'Y' || choco == 'y')
+    {
+        // Install choco
+        system("powershell -Command \"Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))\"");
+    }
+    else
+    {
+        cout << "Chocolatey is not installed." << endl;
+    }
+
+    // Checking if git is installed or not
+    if (system("git --version{") == 0)
+    {
+        cout << "Git is already installed on this PC" << endl;
+    }
+    else
+    {
+        cout << "Git is not installed on this PC" << endl; // Displaying a message
+    }
+
+    // Ask the user if they want to install git or not (Y/N)
+    char git; // git is a variable of type char
+    cout << "Do you want to install git? (Y/N): ";
+    cin >> git; // get the user's input and store it in the variable git
+
+    // If the user enters Y or y, then install git
+    if (git == 'Y' || git == 'y')
+    {
+        cout << "Installing git..." << endl;
+        system("choco install git -y");
+        cout << "git has been installed." << endl;
+    }
+    // If the user enters N or n, then do not install git
+    else if (git == 'N' || git == 'n')
+    {
+        cout << "git will not be installed." << endl;
+    }
+    // If the user enters anything other than Y, y, N or n, then display an error message
+    else
+    {
+        cout << "Invalid input." << endl;
+    }
+    // Check if git is installed on the system or not
+    // If git is not installed, then install it and then continue the program execution
+    if (system("git --version") != 0)
+    {
+        cout << "Git is not installed on your system." << endl;
+        cout << "Installing Git..." << endl;
+        system("choco install git");
+    }
+
+    // If user wants to pull the latest changes from the GitHub repository then do clone the repository and then pull the latest changes from the GitHub repository
+    // If user does not want to pull the latest changes from the GitHub repository then do clone the repository and then do not pull the latest changes from the GitHub repository
+    cout << "Do you want to pull the latest changes from the GitHub repository? (y/n): ";
+    char choice; // variable to store the user's choice
+    cin >> choice;
+    if (choice == 'y')
+    {
+        cout << "Pulling the latest changes from the GitHub repository..." << endl;
+        system("git clone https://github.com/karthik558/clean-windows && cd clean-windows && git pull");
+    }
+    else
+    {
+        cout << "Continuing the program execution..." << endl;
+        // Continue the below program execution without pulling the latest changes from the GitHub repository
+    }
+
     // Lets the user know that the program is running
-    cout << "Lets start the script.." << endl;
+    cout << "LET'S START THE SCRIPT...." << endl;
 
     // Clear the screen
     system("cls");
@@ -96,32 +177,53 @@ int main()
     cout << "[4] [4] Please do not close the console window until the script is finished." << endl;
     cout << "[5] This script is fully automated and does not require any user input to complete. (after accepting the EULA)" << endl;
     cout << "[6] This script will not clean up the following: " << endl;
-    cout <<     "[*] Windows Defender" << endl;
-    cout <<     "[*] Windows Defender Antivirus" << endl;
-    cout <<     "[*] Windows Defender Online" << endl;
-    cout <<     "[*] Windows Defender SmartScreen " << endl;
-    cout <<     "[*] Windows Defender Trust Center " << endl;
-    cout <<     "[*] Windows Defender Web Scan " << endl;
+    cout << "[*] Windows Defender" << endl;
+    cout << "[*] Windows Defender Antivirus" << endl;
+    cout << "[*] Windows Defender Online" << endl;
+    cout << "[*] Windows Defender SmartScreen " << endl;
+    cout << "[*] Windows Defender Trust Center " << endl;
+    cout << "[*] Windows Defender Web Scan " << endl;
 
     // Wait for 3 seconds
     Sleep(3000);
 
     cout << "Do you accept the EULA agreement? (y/n)" << endl;
-    char answer; // Variable to store the user's answer
+    char answer;   // Variable to store the user's answer
     cin >> answer; // Get the user's answer
 
-    if answer == 'y' {
-        // Clear the screen
-        system("cls");
-        cout << "EULA Agreement accepted. Starting the script.." << endl;
-    }
-    else {
+    if answer
+        == 'y'
+        {
+            // Clear the screen
+            system("cls");
+            cout << "EULA Agreement accepted. Starting the script.." << endl;
+        }
+    else
+    {
         // Clear the screen
         system("cls");
         cout << "EULA Agreement rejected. Exiting the script.." << endl;
         return 0;
     }
 
+    // Print the banner before starting the script
+    cout << "██╗  ██╗ █████╗ ██████╗ ████████╗██╗  ██╗██╗██╗  ██╗" << endl;
+    cout << "██║ ██╔╝██╔══██╗██╔══██╗╚══██╔══╝██║  ██║██║██║ ██╔╝" << endl;
+    cout << "█████╔╝ ███████║██████╔╝   ██║   ███████║██║█████╔╝" << endl;
+    cout << "██╔═██╗ ██╔══██║██╔══██╗   ██║   ██╔══██║██║██╔═██╗" << endl;
+    cout << "██║  ██╗██║  ██║██║  ██║   ██║   ██║  ██║██║██║  ██╗" << endl;
+    cout << "╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝" << endl;
+
+    cout << "███████╗ ██████╗██████╗ ██╗██████╗ ████████╗" << endl;
+    cout << "██╔════╝██╔════╝██╔══██╗██║██╔══██╗╚══██╔══╝" << endl;
+    cout << "███████╗██║     ██████╔╝██║██████╔╝   ██║" << endl;
+    cout << "╚════██║██║     ██╔══██╗██║██╔═══╝    ██║" << endl;
+    cout << "███████║╚██████╗██║  ██║██║██║        ██║" << endl;
+    cout << "╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝" << endl;
+
+    // Wait for 3 seconds
+    Sleep(3000);
+    
     // End explorer.exe processs
     system("taskkill /f /im explorer.exe");
     cout << "BYE BYE EXPLORER.exe" << endl;
@@ -266,7 +368,25 @@ int main()
     cout << "%userprofile%\\%temp% directory removed" << endl;
     Sleep(1000);
 
-    getch ();
+    // Clear the windows run history
+    reg = "reg delete \"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RunMRU\" /f";
+    system(reg.c_str());
+    cout << "Windows run history cleared" << endl;
+    Sleep(1000);
+
+    // Print out the bye banner
+    cout << "    ▄████████    ▄████████    ▄████████      ▄██   ▄    ▄██████▄  ███    █▄" << endl;
+    cout << "  ███    ███   ███    ███   ███    ███      ███   ██▄ ███    ███ ███    ███" << endl;
+    cout << "███    █▀    ███    █▀    ███    █▀       ███▄▄▄███   ███    ███ ███    ███ " << endl;
+    cout << "███         ▄███▄▄▄      ▄███▄▄▄          ▀▀▀▀▀▀███   ███    ███ ███    ███ " << endl;
+    cout << "▀███████████ ▀▀███▀▀▀     ▀▀███▀▀▀          ▄██   ███ ███    ███ ███    ███" << endl;
+    cout << "         ███   ███    █▄    ███    █▄       ███   ███ ███    ███ ███    ███" << endl;
+    cout << "   ▄█    ███   ███    ███   ███    ███      ███   ███    ███     ███ ███ ███" << endl;
+    cout << " ▄████████▀    ██████████   ██████████       ▀█████▀   ▀██████▀  ████████▀" << endl;
+
+    // To the end of the script
+    Sleep(1500);
+    getch();
     return 0;
 }
 
@@ -277,6 +397,23 @@ WINDOWS CLEANER SCRIPT - STABLE VERSION
 TOOLS ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND AND THE AUTHOR IS NOT RESPONSIBLE FOR ANY DAMAGE CAUSED BY THE USE OF THESE TOOLS
 USE AT YOUR OWN RISK
 FORCED TO RUN ONLY WITH ADMINISTRATOR PRIVILEGES.
+[
+    DEPENDENCIES FOR RUNNING THIS SCRIPT:
+    WINDOWS MACHINE (7, 8, 8.1, 10, 11)
+    GIT (https://git-scm.com/download/win)
+    CHOCOLATEY (CHOCLATEY.ORG)
+]
+[
+    DEPENDENCIES FOR COMPILING THIS SCRIPT:
+    VISUAL STUDIO CODE (https://code.visualstudio.com/download)
+    VISUAL STUDIO CODE EXTENSIONS:
+    C/C++ (MICROSOFT)
+    C/C++ INTELLISENSE (MICROSOFT)
+    C/C++ SNIPPETS (TOMMY)
+    GNU COMPILER COLLECTION (MICROSOFT)
+    CODE RUNNER (FORMERLY RUN CODE) (JUN HO)
+    C/C++ FORMATTER (MICROSOFT)
+]
 LICESNSE: GNU GENERAL PUBLIC LICENSE V3.0
 OPENSOURCE SOFTWARE LICENSE AGREEMENT FOR WINDOWS DISTRIBUTION SYSTEM (https://www.gnu.org/licenses/gpl-3.0.en.html)
 Copying and distribution of this file, with or without modification, are permitted in any medium without royalty provided the copyright notice and this notice are preserved.
