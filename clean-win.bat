@@ -1,7 +1,7 @@
 @echo off
 
-@REM Set console color to dark green (hello hacker console)
-color 0a
+@REM Set console color to (Powershell Blue & White)
+color 1F
 
 @REM Print banner (hello hacker console)                                                                                        
                                                                                         
