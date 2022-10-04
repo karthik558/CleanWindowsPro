@@ -223,7 +223,7 @@ int main()
 
     // Wait for 3 seconds
     Sleep(3000);
-    
+
     // End explorer.exe processs
     system("taskkill /f /im explorer.exe");
     cout << "BYE BYE EXPLORER.exe" << endl;
@@ -375,13 +375,13 @@ int main()
     Sleep(1000);
 
     // Print out the bye banner
-    cout << "    ▄████████    ▄████████    ▄████████      ▄██   ▄    ▄██████▄  ███    █▄" << endl;
+    cout << "    ▄████████    ▄████████    ▄████████      ▄██   ▄    ▄██████▄ ███    █▄" << endl;
     cout << "  ███    ███   ███    ███   ███    ███      ███   ██▄ ███    ███ ███    ███" << endl;
-    cout << "███    █▀    ███    █▀    ███    █▀       ███▄▄▄███   ███    ███ ███    ███ " << endl;
-    cout << "███         ▄███▄▄▄      ▄███▄▄▄          ▀▀▀▀▀▀███   ███    ███ ███    ███ " << endl;
+    cout << "███      █▀    ███    █▀    ███    █▀       ███▄▄▄███ ███    ███ ███    ███ " << endl;
+    cout << "███           ▄███▄▄▄       ███▄▄▄          ▀▀▀▀▀▀███ ███    ███ ███    ███ " << endl;
     cout << "▀███████████ ▀▀███▀▀▀     ▀▀███▀▀▀          ▄██   ███ ███    ███ ███    ███" << endl;
     cout << "         ███   ███    █▄    ███    █▄       ███   ███ ███    ███ ███    ███" << endl;
-    cout << "   ▄█    ███   ███    ███   ███    ███      ███   ███    ███     ███ ███ ███" << endl;
+    cout << "   ▄█    ███   ███    ███   ███    ███      ███   ███    ███     █████████" << endl;
     cout << " ▄████████▀    ██████████   ██████████       ▀█████▀   ▀██████▀  ████████▀" << endl;
 
     // To the end of the script
@@ -398,21 +398,21 @@ TOOLS ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND AND THE AUTHOR IS NOT RESP
 USE AT YOUR OWN RISK
 FORCED TO RUN ONLY WITH ADMINISTRATOR PRIVILEGES.
 [
-    DEPENDENCIES FOR RUNNING THIS SCRIPT:
-    WINDOWS MACHINE (7, 8, 8.1, 10, 11)
-    GIT (https://git-scm.com/download/win)
-    CHOCOLATEY (CHOCLATEY.ORG)
+DEPENDENCIES FOR RUNNING THIS SCRIPT:
+WINDOWS MACHINE (7, 8, 8.1, 10, 11)
+GIT (https://git-scm.com/download/win)
+CHOCOLATEY (CHOCLATEY.ORG)
 ]
 [
-    DEPENDENCIES FOR COMPILING THIS SCRIPT:
-    VISUAL STUDIO CODE (https://code.visualstudio.com/download)
-    VISUAL STUDIO CODE EXTENSIONS:
-    C/C++ (MICROSOFT)
-    C/C++ INTELLISENSE (MICROSOFT)
-    C/C++ SNIPPETS (TOMMY)
-    GNU COMPILER COLLECTION (MICROSOFT)
-    CODE RUNNER (FORMERLY RUN CODE) (JUN HO)
-    C/C++ FORMATTER (MICROSOFT)
+DEPENDENCIES FOR COMPILING THIS SCRIPT:
+VISUAL STUDIO CODE (https://code.visualstudio.com/download)
+VISUAL STUDIO CODE EXTENSIONS:
+C/C++ (MICROSOFT)
+C/C++ INTELLISENSE (MICROSOFT)
+C/C++ SNIPPETS (TOMMY)
+GNU COMPILER COLLECTION (MICROSOFT)
+CODE RUNNER (FORMERLY RUN CODE) (JUN HO)
+C/C++ FORMATTER (MICROSOFT)
 ]
 LICESNSE: GNU GENERAL PUBLIC LICENSE V3.0
 OPENSOURCE SOFTWARE LICENSE AGREEMENT FOR WINDOWS DISTRIBUTION SYSTEM (https://www.gnu.org/licenses/gpl-3.0.en.html)
