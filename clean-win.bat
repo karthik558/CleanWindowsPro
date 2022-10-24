@@ -54,8 +54,19 @@ if %errorLevel% == 0 (
 @echo off 
 
 if exist %~dp0\restart.txt (
-    echo Restart pending. Exiting.
-    exit /b 1
+    echo Error: A restart is pending. Please restart the computer and run the script again.
+    :: Ask the user to ignore the restart and continue the script.
+    echo Do you want to continue the script? (Y/N)
+    set /p choice=Enter your choice:
+    if %choice% == Y (
+        echo Continuing the script...
+        timeout /t 1
+        goto :continue
+    ) else (
+        echo Aborting the script...
+        timeout /t 1
+        exit /b 1
+    )
 )
 
 @REM This script will clean the Windows build directory.
@@ -79,7 +90,7 @@ echo Wscript.Sleep 1                                    >>"%TempVBSFile%"
 CSCRIPT //nologo "%TempVBSFile%"
 
 @REM Set Title is needed cuz of the way the console is displayed
-title KARTHIK-V2.1-STABLE
+title KARTHIK-V2.2-STABLE
 @REM Ofc we need to mention the tool before starting the script
 echo YOU ARE USING KARTHIK LAL WINDOWS CLEAN SCRIPT
 @REM Timeout is used to make the script wait for 3 seconds
@@ -256,7 +267,7 @@ del /f /s /q "%userprofile%\local settings\temporary internet files\*.*"
 echo Removing recent files
 @REM Timeout is used to make the script wait for 1 seconds
 timeout /t 1 
-@REM Delete all the files in the recent files folder | clearing the recent files folder having some issues on windows 11 (not sure why)
+@REM Delete all the files in the recent files folder ~ clearing the recent files folder having some issues on windows 11 (not sure why)
 del /f /s /q "%userprofile%\recent\*.*"
 
 @REM Fix all the corrupted files in the system drive
@@ -309,13 +320,13 @@ echo .
 echo .
 
 @REM PRINT REGARDS MESSAGE TO THE USER
-echo Regards KARTHIK LAL
+echo REGARDS KARTHIK LAL
 @REM Timeout is used to make the script wait for 6 seconds
 timeout /t 6
 
 @REM REMOVING THE TEMP DIRECTORY AT LAST , DUE TO SOME LOOPING ISSUE ON WINDOWS 11 (not sure why)
 @REM Delete all the files in the temp directory
-echo Finally REMOVING THE TEMP DIRECTORY
+echo Finally removing the temp_directory
 @REM Delete all the files in the local settings temp folder
 echo Removing local_settings__temp files
 @REM Timeout is used to make the script wait for 1 seconds
