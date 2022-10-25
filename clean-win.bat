@@ -39,6 +39,7 @@ timeout /t 1
 net session >nul 2>&1
 if %errorLevel% == 0 (
     echo Success: You are running this script as an administrator.
+    cls
 ) else (
     echo Error: You are not running this script as an administrator.
     :: Pause the script until the user hits any key.
@@ -55,19 +56,31 @@ if %errorLevel% == 0 (
 
 if exist %~dp0\restart.txt (
     echo Error: A restart is pending. Please restart the computer and run the script again.
-    :: Ask the user to ignore the restart and continue the script.
-    echo Do you want to continue the script? (Y/N)
-    set /p choice=Enter your choice:
-    if %choice% == Y (
+    timeout /t 1
+    goto prompt_restart
+) else (
+    echo Success: No restart is pending.
+    timeout /t 1
+    goto continue
+)  
+
+:prompt_restart
+    @REM Ask the user to ignore the restart warning and continue the script.
+    echo Do you want to ignore the restart warning and continue the script? (Y/N)
+    set /p con_Answer=Y/N:
+
+    if /i "%con_Answer%" == "Y" (
         echo Continuing the script...
-        timeout /t 1
-        goto :continue
+        goto continue
     ) else (
         echo Aborting the script...
-        timeout /t 1
         exit /b 1
     )
-)
+
+:continue
+    echo Continuing the script...
+    timeout /t 2
+    cls
 
 @REM This script will clean the Windows build directory.
 @REM FORCE SCRIPT TO WORK ON FULL SCREEN MODE
