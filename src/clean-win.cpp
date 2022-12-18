@@ -324,6 +324,11 @@ int main()
     cout << "All recent files removed" << endl;
     Sleep(1000);
 
+    // Repairing System Image (using Windows Update if needed)
+    system("dism /Online /Cleanup-Image /RestoreHealth");
+    cout << "Repairing System Image (using Windows Update if needed)" << endl;
+    Sleep(1000);
+
     // Scanning all protected system files, and replacing corrupted files
     system("sfc /scannow");
     cout << "Scanning all protected system files, and replacing corrupted files" << endl;
