@@ -1,3 +1,9 @@
+![banner](src/documentation/banner.png)
+![](https://img.shields.io/github/license/karthik558/clean-windows?style=for-the-badge)
+![](https://img.shields.io/github/forks/karthik558/clean-windows?style=for-the-badge)
+![](https://img.shields.io/github/stars/karthik558/clean-windows?style=for-the-badge)
+![](https://img.shields.io/github/release/karthik558/clean-windows?style=for-the-badge)
+![](https://img.shields.io/github/downloads/karthik558/clean-windows/total?style=for-the-badge)
 ## <b> ABOUT THIS PROJECT </b>
 
 * This is a simple windows clean-up project. It is intended to be used as a tool to clean up your windows environment.
@@ -16,6 +22,13 @@
 * ` git clone https://github.com/karthik558/clean-windows.git ` or ` Download the repo from GitHub [ZIP]`
 * ` Run the clean-win.bat file in adminisrator privileges mode `
 * ` Wait for the setup to complete `
+
+
+### <b> PICTORIAL REPRESENTATION </b>
+
+<img src="src/documentation/docs1.jpg" alt="PREVIEW-1" width="100%" height="100%" position="center">
+<img src="src/documentation/docs2.jpg" alt="PREVIEW-1" width="100%" height="100%" position="center">
+<img src="src/documentation/docs3.jpg" alt="PREVIEW-1" width="100%" height="100%" position="center">
 
 ## <b> INFORMATION ABOUT THIS PROJECT </b>
 
