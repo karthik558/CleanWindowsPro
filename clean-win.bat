@@ -283,6 +283,13 @@ timeout /t 1
 @REM Delete all the files in the recent files folder ~ clearing the recent files folder having some issues on windows 11 (not sure why)
 del /f /s /q "%userprofile%\recent\*.*"
 
+@REM Repair System Image (used by sfc /scannow to fix corrupted files)
+echo Repairing System Image (using Windows Update if needed)
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1 
+@REM Repair the System Image (using Windows Update if needed)
+dism /Online /Cleanup-Image /RestoreHealth
+
 @REM Fix all the corrupted files in the system drive
 echo Scanning all protected system files, and replacing corrupted files
 @REM Timeout is used to make the script wait for 1 seconds
