@@ -47,7 +47,6 @@ if %errorLevel% == 0 (
     exit /b 1
 )
 
-
 @REM Abort the script if there is any pending restart/reboot.
 @REM Security check [2/3]
 @REM Abort if any restart is pending
@@ -171,15 +170,21 @@ exit /b 1
 
 :EULA_Accepted
 
-@REM lets make it look like a real program :)
-echo BYE BYE EXPLORER.exe
-@REM Timeout is used to make the script wait for 1 seconds
-timeout /t 1
-@REM Clear the screen
-cls
-@REM Kill the explorer.exe
-taskkill /f /im explorer.exe
+@REM Ask user for killing the explorer.exe process
+echo Do you want to kill the explorer.exe process? (Y/N)
 
+set /p Explorer_Answer= Y/N:
+
+if /i "%Explorer_Answer%" == "Y" (
+    echo Killing explorer.exe process...
+    taskkill /f /im explorer.exe
+) else (
+    echo Not killing explorer.exe process...
+    goto CTL
+)
+
+@REM Continue the script
+:CTL
 @REM Clearing DNS cache
 echo Clearing DNS cache
 @REM Flush DNS cache
@@ -283,6 +288,13 @@ timeout /t 1
 @REM Delete all the files in the recent files folder ~ clearing the recent files folder having some issues on windows 11 (not sure why)
 del /f /s /q "%userprofile%\recent\*.*"
 
+@REM Delete all the files in the history folder
+echo Removing history files
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1
+@REM Delete all the files in the history folder
+del /f /s /q "%userprofile%\local settings\history\*.*"
+
 @REM Repair System Image (used by sfc /scannow to fix corrupted files)
 echo Repairing System Image (using Windows Update if needed)
 @REM Timeout is used to make the script wait for 1 seconds
@@ -320,10 +332,11 @@ reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" /f
 @REM Clear the console
 cls 
 
-@REM Lets make it look like a real program :)
-echo Welcome back explorer.exe
-@REM Restart the explorer.exe which we already killed earlier
-explorer.exe 
+@REM Start explorer.exe only if it is not running
+echo Starting explorer.exe
+@REM Timeout is used to make the script wait for 1 seconds
+timeout /t 1
+tasklist /fi "imagename eq explorer.exe" | find /i "explorer.exe" >nul || start explorer.exe
 
 @REM GREETINGS FROM THE DEVELOPER (KARTHIK LAL) :)
 
