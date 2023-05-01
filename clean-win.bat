@@ -3,31 +3,23 @@
 @REM Set console color to (Powershell Blue & White)
 color 1F
 
-@REM Print banner (hello hacker console)                                                                                        
-                                                                                        
-echo `7MMF' `YMM'       db      `7MM"""Mq. MMP""MM""YMM `7MMF'  `7MMF'`7MMF'`7MMF' `YMM'     
-echo   MM   .M'        ;MM:       MM   `MM.P'   MM   `7   MM      MM    MM    MM   .M'       
-echo   MM .d"         ,V^MM.      MM   ,M9      MM        MM      MM    MM    MM .d"         
-echo   MMMMM.        ,M  `MM      MMmmdM9       MM        MMmmmmmmMM    MM    MMMMM.         
-echo   MM  VMA       AbmmmqMA     MM  YM.       MM        MM      MM    MM    MM  VMA        
-echo   MM   `MM.    A'     VML    MM   `Mb.     MM        MM      MM    MM    MM   `MM.      
-echo .JMML.   MMb..AMA.   .AMMA..JMML. .JMM.  .JMML.    .JMML.  .JMML..JMML..JMML.   MMb.    
-echo .
-echo .                                                         
-echo  .M"""bgd   .g8"""bgd `7MM"""Mq.  `7MMF'`7MM"""Mq. MMP""MM""YMM                         
-echo ,MI    "Y .dP'     `M   MM   `MM.   MM    MM   `MM.P'   MM   `7                         
-echo `MMb.     dM'       `   MM   ,M9    MM    MM   ,M9      MM                              
-echo   `YMMNq. MM            MMmmdM9     MM    MMmmdM9       MM                              
-echo .     `MM MM.           MM  YM.     MM    MM            MM                              
-echo Mb     dM `Mb.     ,'   MM   `Mb.   MM    MM            MM                              
-echo P"Ybmmd"    `"bmmmd'  .JMML. .JMM..JMML..JMML.        .JMML.                            
-echo .
-echo .                                                                                        
-@REM Security check [1/3]
-@REM Exit if , script is run from a non-administrator account
-@REM Security check to ensure that the script is being run by an administrator.
+@REM .##....##....###....########..########.##.....##.####.##....##.........##..........###....##......
+@REM .##...##....##.##...##.....##....##....##.....##..##..##...##..........##.........##.##...##......
+@REM .##..##....##...##..##.....##....##....##.....##..##..##..##...........##........##...##..##......
+@REM .#####....##.....##.########.....##....#########..##..#####....#######.##.......##.....##.##......
+@REM .##..##...#########.##...##......##....##.....##..##..##..##...........##.......#########.##......
+@REM .##...##..##.....##.##....##.....##....##.....##..##..##...##..........##.......##.....##.##......
+@REM .##....##.##.....##.##.....##....##....##.....##.####.##....##.........########.##.....##.########
+
+@REM [Developer information]
+echo Developer  :  KARTHIK LAL
+echo Version    :  2.3.0 (Stable)
+echo Date       :  2022-06-10
+echo Project    :  Clean-Windows (Windows Build Directory Cleaner)
+echo.
 
 @echo off
+@REM Security check [1/3]
 @REM Check permission to continue the script
 goto check_Permissions
 
@@ -138,34 +130,27 @@ echo Do you accept the terms of the EULA? (y/n)
 set /p EULA_Answer= Y/N:
 
 if /i "%EULA_Answer%" == "Y" (
-    echo EULA Accepted.
+    echo EULA accepted. Continuing...
     goto EULA_Accepted
 ) else (
-    echo EULA Rejected.
+    echo EULA rejected. Aborting...
     goto EULA_Rejected
 )
 
 :EULA_Rejected
 
-echo [===]
-@REM EULA agreement aborted. (1/5)
-timeout /t 1
-cls
-echo [======]
-@REM EULA agreement aborted. (2/5)
-timeout /t 1
-cls
-echo [==========]
-@REM EULA agreement aborted. (3/5)
-timeout /t 1
-cls
-echo [===============]
-@REM EULA agreement aborted. (4/5)
-timeout /t 1
-cls
-echo [====================]
-@REM EULA agreement aborted. (5/5)
-timeout /t 1
+echo EULA agreement aborted. Please wait...
+timeout /t 1 >nul
+echo Progress: [===] 20%
+timeout /t 1 >nul
+echo Progress: [======] 40%
+timeout /t 1 >nul
+echo Progress: [==========] 60%
+timeout /t 1 >nul
+echo Progress: [===============] 80%
+timeout /t 1 >nul
+echo Progress: [====================] 100%
+timeout /t 1 >nul
 exit /b 1
 
 :EULA_Accepted
@@ -310,11 +295,11 @@ timeout /t 1
 sfc /scannow 
 
 @REM Print out the directory tree list
-echo Print out directory_tree_list
+@REM echo Print out directory_tree_list
 @REM Timeout is used to make the script wait for 1 seconds
-timeout /t 1 
-@REM Check all directory_trees and print out the list (just for final view)
-dir /s 
+@REM timeout /t 1 
+@REM Check all directory_trees and print out the list (just for final view) : can be removed if not needed : also this detects some viruses and trojans (if any)
+@REM dir /s 
 
 @REM Clear the system restore point
 echo Clearing the system restore point
@@ -340,22 +325,22 @@ tasklist /fi "imagename eq explorer.exe" | find /i "explorer.exe" >nul || start 
 
 @REM GREETINGS FROM THE DEVELOPER (KARTHIK LAL) :)
 
-echo .                                                           
-echo .                                                                         
-echo .M"""bgd `7MM"""YMM  `7MM"""YMM      `YMM'   `MM' .g8""8q. `7MMF'   `7MF'
-echo ,MI    "Y   MM    `7    MM    `7        VMA   ,V .dP'    `YM. MM       M  
-echo `MMb.       MM   d      MM   d           VMA ,V  dM'      `MM MM       M  
-echo  `YMMNq.   MMmmMM      MMmmMM            VMMP   MM        MM MM       M  
-echo.     `MM   MM   Y  ,   MM   Y  ,          MM    MM.      ,MP MM       M  
-echo Mb     dM   MM     ,M   MM     ,M          MM    `Mb.    ,dP' YM.     ,M  
-echo P"Ybmmd"  .JMMmmmmMMM .JMMmmmmMMM        .JMML.    `"bmmd"'    `bmmmmd"'  
-echo .                                                                         
-echo .
+@REM :'######::'########:'########::::::::::'##:::'##::'#######::'##::::'##:
+@REM '##... ##: ##.....:: ##.....:::::::::::. ##:'##::'##.... ##: ##:::: ##:
+@REM  ##:::..:: ##::::::: ##:::::::::::::::::. ####::: ##:::: ##: ##:::: ##:
+@REM . ######:: ######::: ######:::'#######:::. ##:::: ##:::: ##: ##:::: ##:
+@REM :..... ##: ##...:::: ##...::::........:::: ##:::: ##:::: ##: ##:::: ##:
+@REM '##::: ##: ##::::::: ##::::::::::::::::::: ##:::: ##:::: ##: ##:::: ##:
+@REM . ######:: ########: ########::::::::::::: ##::::. #######::. #######::
+@REM :......:::........::........::::::::::::::..::::::.......::::.......:::
 
 @REM PRINT REGARDS MESSAGE TO THE USER
-echo REGARDS KARTHIK LAL
+echo Thanks for using the script
+echo Regards from the developer (KARTHIK-LAL)
+echo EMAIL: karthiklal@duck.com
+
 @REM Timeout is used to make the script wait for 6 seconds
-timeout /t 6
+timeout /t 4
 
 @REM REMOVING THE TEMP DIRECTORY AT LAST , DUE TO SOME LOOPING ISSUE ON WINDOWS 11 (not sure why)
 @REM Delete all the files in the temp directory
@@ -368,14 +353,14 @@ timeout /t 1
 del /f /s /q "%userprofile%\local settings\temp\*.*"
 
 @REM ================================================================
-@REM AUTHOR: KARTHIK LAL & :: EMAIL: karthik.lal558@gmail.com
-@REM DATE: 10-06-2022
-@REM WINDOWS CLEANER SCRIPT - STABLE VERSION
+@REM AUTHOR: KARTHIK LAL & :: EMAIL: karthiklal@duck.com
+@REM CREATED DATE: 10-06-2022
+@REM WINDOWS CLEANER SCRIPT - STABLE VERSION 2.3.1
 @REM TOOLS ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND AND THE AUTHOR IS NOT RESPONSIBLE FOR ANY DAMAGE CAUSED BY THE USE OF THESE TOOLS
 @REM USE AT YOUR OWN RISK
 @REM FORCED TO RUN ONLY WITH ADMINISTRATOR PRIVILEGES.
 @REM LICESNSE: GNU GENERAL PUBLIC LICENSE V3.0
 @REM OPENSOURCE SOFTWARE LICENSE AGREEMENT FOR WINDOWS DISTRIBUTION SYSTEM (https://www.gnu.org/licenses/gpl-3.0.en.html)
 @REM Copying and distribution of this file, with or without modification, are permitted in any medium without royalty provided the copyright notice and this notice are preserved.
-@REM Copyright (c) 2022 KARTHIK LAL
+@REM Copyright (c) 2022-2023 KARTHIK LAL
 @REM ================================================================
