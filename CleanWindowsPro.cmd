@@ -231,11 +231,11 @@ echo Clearing the windows run history
 timeout /t 1
 reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" /f
 
-@REM Delete all the files in the temp directory
-echo Finally removing the temp_directory
-echo Removing local_settings__temp files
-del /f /s /q "%userprofile%\local settings\temp\*.*"
-timeout /t 1 
+@REM @REM Delete all the files in the temp directory
+@REM echo Finally removing the temp_directory
+@REM echo Removing local_settings__temp files
+@REM del /f /s /q "%userprofile%\local settings\temp\*.*"
+@REM timeout /t 1
 
 @REM Start explorer.exe only if it is not running
 echo Starting explorer.exe
@@ -251,7 +251,7 @@ del /f /s /q %systemdrive%\*.tmp
 rd /s /q %windir%\temp & md %windir%\temp 
 del /f /s /q "%userprofile%\recent\*.*"
 del /f /s /q "%userprofile%\local settings\history\*.*"
-del /f /s /q "%userprofile%\local settings\temp\*.*"
+@REM del /f /s /q "%userprofile%\local settings\temp\*.*"
 del /f /s /q %windir%\prefetch\*.* 
 timeout /t 1
 echo Done!
