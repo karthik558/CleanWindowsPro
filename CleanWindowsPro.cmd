@@ -100,7 +100,8 @@ echo 5. Clear DNS Cache (Recommended)
 echo 6. Use Custom DNS Server (Optional)
 echo 7. EULA (End User License Agreement)
 echo 8. Block Windows Telemetry (Optional)
-echo 9. Exit
+echo 9. Clear all browser cache and Cookies (Optional)
+echo 10. Exit
 echo.
 set /p option="Enter your selection: "
 
@@ -112,7 +113,9 @@ if "%option%"=="5" goto CLEAR-DNS-CACHE
 if "%option%"=="6" goto USE-CUSTOM-DNS
 if "%option%"=="7" goto EULA
 if "%option%"=="8" goto BLOCK-TELEMETRY
-if "%option%"=="9" goto END
+if "%option%"=="9" goto CLEAR-BROWSER-CACHE
+if "%option%"=="10" goto END
+
 echo Invalid option.
 goto MENU
 
@@ -521,6 +524,84 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v AllowTeleme
 echo Windows Telemetry unblocked successfully.
 timeout /t 5
 goto MENU
+
+:CLEAR-BROWSER-CACHE
+cls
+color F0
+echo Clearing all browser cache and cookies
+echo.
+echo [1] Clear Google Chrome cache and cookies
+echo [2] Clear Mozilla Firefox cache and cookies
+echo [3] Clear Microsoft Edge cache and cookies
+echo [4] Clear Opera cache and cookies
+echo [5] Clear all browser cache and cookies
+echo [6] Back to main menu
+echo.
+set /p browser=Enter your choice: 
+if "%browser%"=="1" goto CLEAR-CHROME
+if "%browser%"=="2" goto CLEAR-FIREFOX
+if "%browser%"=="3" goto CLEAR-EDGE
+if "%browser%"=="4" goto CLEAR-OPERA
+if "%browser%"=="5" goto CLEAR-ALL
+if "%browser%"=="6" goto MENU
+echo Invalid option.
+goto CLEAR-BROWSER-CACHE
+
+:CLEAR-CHROME
+@echo off
+color F0
+echo Clearing Google Chrome cache and cookies
+echo.
+del /f /s /q "%userprofile%\AppData\Local\Google\Chrome\User Data\Default\Cache\*.*"
+del /f /s /q "%userprofile%\AppData\Local\Google\Chrome\User Data\Default\Cookies\*.*"
+echo Google Chrome cache and cookies cleared successfully.
+timeout /t 5
+
+:CLEAR-FIREFOX
+@echo off
+color F0
+echo Clearing Mozilla Firefox cache and cookies
+echo.
+del /f /s /q "%userprofile%\AppData\Local\Mozilla\Firefox\Profiles\*.default\Cache\*.*"
+del /f /s /q "%userprofile%\AppData\Local\Mozilla\Firefox\Profiles\*.default\Cookies\*.*"
+echo Mozilla Firefox cache and cookies cleared successfully.
+timeout /t 5
+
+:CLEAR-EDGE
+@echo off
+color F0
+echo Clearing Microsoft Edge cache and cookies
+echo.
+del /f /s /q "%userprofile%\AppData\Local\Microsoft\Edge\User Data\Default\Cache\*.*"
+del /f /s /q "%userprofile%\AppData\Local\Microsoft\Edge\User Data\Default\Cookies\*.*"
+echo Microsoft Edge cache and cookies cleared successfully.
+timeout /t 5
+
+:CLEAR-OPERA
+@echo off
+color F0
+echo Clearing Opera cache and cookies
+echo.
+del /f /s /q "%userprofile%\AppData\Local\Opera Software\Opera Stable\Cache\*.*"
+del /f /s /q "%userprofile%\AppData\Local\Opera Software\Opera Stable\Cookies\*.*"
+echo Opera cache and cookies cleared successfully.
+timeout /t 5
+
+:CLEAR-ALL
+@echo off
+color F0
+echo Clearing all browser cache and cookies
+echo.
+del /f /s /q "%userprofile%\AppData\Local\Google\Chrome\User Data\Default\Cache\*.*"
+del /f /s /q "%userprofile%\AppData\Local\Google\Chrome\User Data\Default\Cookies\*.*"
+del /f /s /q "%userprofile%\AppData\Local\Mozilla\Firefox\Profiles\*.default\Cache\*.*"
+del /f /s /q "%userprofile%\AppData\Local\Mozilla\Firefox\Profiles\*.default\Cookies\*.*"
+del /f /s /q "%userprofile%\AppData\Local\Microsoft\Edge\User Data\Default\Cache\*.*"
+del /f /s /q "%userprofile%\AppData\Local\Microsoft\Edge\User Data\Default\Cookies\*.*"
+del /f /s /q "%userprofile%\AppData\Local\Opera Software\Opera Stable\Cache\*.*"
+del /f /s /q "%userprofile%\AppData\Local\Opera Software\Opera Stable\Cookies\*.*"
+echo All browser cache and cookies cleared successfully.
+timeout /t 5
 
 :END
 @echo off
