@@ -2,23 +2,24 @@
 
 @REM [Default variables]
 set "developer=KARTHIK LAL"
-set "email=karthiklal@duck.com"
+set "email=dev@karthiklal.in"
 set "project=CleanWindowsPro"
 set "projectUpperCase=CLEANWINDOWSPRO"
 set "created-date=10-06-2022"
 set "current-date=%date%"
-set "version=2.4.1"
-set "copy-right=(C) 2022-2023 %developer%"
-set "author-website=karthiklal.live"
+set "version=2.5.0"
+set "copy-right=(C) 2022-2024 %developer%"
+set "author-website=karthiklal.in"
 
 @REM Set Title is needed cuz of the way the console is displayed
 title %project% - %version% - %developer%                                                                     
 
-@REM     ____ _               __        ___           _                   ____            
-@REM    / ___| | ___  __ _ _ _\ \      / (_)_ __   __| | _____      _____|  _ \ _ __ ___  
-@REM   | |   | |/ _ \/ _` | '_ \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / __| |_) | '__/ _ \ 
-@REM   | |___| |  __/ (_| | | | \ V  V / | | | | | (_| | (_) \ V  V /\__ \  __/| | | (_) |
-@REM    \____|_|\___|\__,_|_| |_|\_/\_/  |_|_| |_|\__,_|\___/ \_/\_/ |___/_|   |_|  \___/ 
+@REM  .o88b. db      d88888b  .d8b.  d8b   db db   d8b   db d888888b d8b   db d8888b.  .d88b.  db   d8b   db .d8888. d8888b. d8888b.  .d88b.  
+@REM d8P  Y8 88      88'     d8' `8b 888o  88 88   I8I   88   `88'   888o  88 88  `8D .8P  Y8. 88   I8I   88 88'  YP 88  `8D 88  `8D .8P  Y8. 
+@REM 8P      88      88ooooo 88ooo88 88V8o 88 88   I8I   88    88    88V8o 88 88   88 88    88 88   I8I   88 `8bo.   88oodD' 88oobY' 88    88 
+@REM 8b      88      88~~~~~ 88~~~88 88 V8o88 Y8   I8I   88    88    88 V8o88 88   88 88    88 Y8   I8I   88   `Y8b. 88~~~   88`8b   88    88 
+@REM Y8b  d8 88booo. 88.     88   88 88  V888 `8b d8'8b d8'   .88.   88  V888 88  .8D `8b  d8' `8b d8'8b d8' db   8D 88      88 `88. `8b  d8' 
+@REM  `Y88P' Y88888P Y88888P YP   YP VP   V8P  `8b8' `8d8'  Y888888P VP   V8P Y8888D'  `Y88P'   `8b8' `8d8'  `8888Y' 88      88   YD  `Y88P' 
 
 @REM Check permission to continue the script
 goto CHECK_PERMISSIONS
@@ -29,11 +30,11 @@ echo Checking for administrator permissions..
 @REM Administrator permission is required to run this script
 net session >nul 2>&1
 if %errorLevel% == 0 (
-    color 0A
+    color F9
 	echo Success, You are running this script as administrator 
     cls
 ) else ( 
-    color 0C
+    color FC
 	echo Error, You are not running this script as administrator
     echo.
     echo Please run this script as administrator
@@ -45,32 +46,33 @@ if %errorLevel% == 0 (
 
 @REM Abort the script if there is any pending restart/reboot.
 if exist %~dp0\restart.txt (
-    color 0C
+    color FC
     echo Error: A restart is pending. Please restart the computer and run the script again.
-    timeout /t 1
+    timeout /t 5
+    cls
     goto PROMPT_RESTART
 ) else (
-    color 0A
+    color F9
     echo Success: No restart is pending...
-    timeout /t 1
+    timeout /t 2
     goto CONTINUE
 )  
 
 :PROMPT_RESTART
-    color 0C
+    color FC
     echo Do you want to ignore the restart warning and continue the script? (Y/N)
+    echo.
     set /p con_Answer=Y/N:
 
-    if /i "%con_Answer%" == "Y" (
-        echo Continuing the script...
+    if /i "%con_Answer%" == "Y" (        
         goto CONTINUE
     ) else (
         echo Aborting the script...
-        exit /b 1
+        exit /b 2
     )
 
 :CONTINUE
-    color 0A
+    color 1F
     echo Continuing the script...
     timeout /t 2
     cls
@@ -80,16 +82,15 @@ cls
 color 1F
 @REM [Developer information]
 echo Developer       :  %developer%
-echo Version         :  %version% (Production)
-echo Developed Date  :  %created-date%
-echo Current Date    :  %current-date%
+echo Version         :  %version%
+echo Created Date    :  %created-date%
 echo Project         :  %project% (Windows Optimzer)
-echo Copyright      :  %copy-right%
+echo Copyright       :  %copy-right%
 echo.
 
-echo ====================================
-echo   %projectUpperCase% - %developer%
-echo ====================================
+echo =======================================
+echo   %project% - (Windows Optimzer)
+echo =======================================
 echo.
 echo 1. Fully Automate (Recommended)
 echo 2. Clear Temporary Files (Quick-Clean)
@@ -99,6 +100,7 @@ echo 5. Clear DNS Cache (Recommended)
 echo 6. Use Custom DNS Server (Optional)
 echo 7. Exit
 echo 8. EULA (End User License Agreement)
+echo 9. Block Windows Telemetry (Optional)
 echo.
 set /p option="Enter your selection: "
 
@@ -110,11 +112,12 @@ if "%option%"=="5" goto CLEAR-DNS-CACHE
 if "%option%"=="6" goto USE-CUSTOM-DNS
 if "%option%"=="7" goto END
 if "%option%"=="8" goto EULA
+if "%option%"=="9" goto BLOCK-TELEMETRY
 echo Invalid option.
 goto MENU
 
 :AUTOMATE
-color 04
+color F0
 @REM Ask user for killing the explorer.exe process
 echo Do you want to kill the explorer.exe process? (Y/N)
 set /p Explorer_Answer= Y/N:
@@ -240,12 +243,12 @@ reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" /f
 @REM Start explorer.exe only if it is not running
 echo Starting explorer.exe
 tasklist /fi "imagename eq explorer.exe" | find /i "explorer.exe" >nul || start explorer.exe
-timeout /t 1
+timeout /t 5
 echo Done!
 goto MENU
 
 :CLEAR-TEMPS
-color 04
+color 1F
 echo Clearing temp, %temp%, %tmp%, recent and prefetch folders
 del /f /s /q %systemdrive%\*.tmp
 rd /s /q %windir%\temp & md %windir%\temp 
@@ -253,39 +256,39 @@ del /f /s /q "%userprofile%\recent\*.*"
 del /f /s /q "%userprofile%\local settings\history\*.*"
 @REM del /f /s /q "%userprofile%\local settings\temp\*.*"
 del /f /s /q %windir%\prefetch\*.* 
-timeout /t 1
+timeout /t 5
 echo Done!
 goto MENU
 
 :CLEAR-SYSTEM-RESTORE-POINTS
-color 06
+color F0
 echo Clearing system restore points
 vssadmin delete shadows /all /quiet
-timeout /t 1
+timeout /t 5
 echo Done!
 goto MENU
 
 :REPAIR-DAMAGED-SYSTEM-FILES
-color 06
+color F0
 echo Repairing damaged system files
 dism /Online /Cleanup-Image /RestoreHealth
 timeout /t 1
 sfc /scannow
-timeout /t 1
+timeout /t 5
 echo Done!
 goto MENU
 
 :CLEAR-DNS-CACHE
-color 05
+color F0
 echo Clearing DNS cache
 ipconfig /flushdns
-timeout /t 1
+timeout /t 5
 echo Done!
 goto MENU
 
 :USE-CUSTOM-DNS
 cls
-color 03
+color 3F
 echo Using custom DNS
 echo.
 echo 1. Google DNS
@@ -310,7 +313,7 @@ goto USE-CUSTOM-DNS
 :GOOGLE-DNS
 @echo off
 setlocal EnableDelayedExpansion
-color 03
+color 3F
 set /p "InterfaceName=Enter the name of the interface: "
 set Index=
 for /f "skip=1" %%a in ('wmic nic where "NetConnectionID='%InterfaceName%'" get Index') do (
@@ -336,7 +339,7 @@ goto USE-CUSTOM-DNS
 :OPENDNS
 @echo off
 setlocal EnableDelayedExpansion
-color 03
+color 3F
 set /p "InterfaceName=Enter the name of the interface: "
 set Index=
 for /f "skip=1" %%a in ('wmic nic where "NetConnectionID='%InterfaceName%'" get Index') do (
@@ -362,7 +365,7 @@ goto USE-CUSTOM-DNS
 :ADGUARD-DNS
 @echo off
 setlocal EnableDelayedExpansion
-color 03
+color 3F
 set /p "InterfaceName=Enter the name of the interface: "
 set Index=
 for /f "skip=1" %%a in ('wmic nic where "NetConnectionID='%InterfaceName%'" get Index') do (
@@ -388,7 +391,7 @@ goto USE-CUSTOM-DNS
 :CLOUDFLARE-DNS
 @echo off
 setlocal EnableDelayedExpansion
-color 03
+color 3F
 set /p "InterfaceName=Enter the name of the interface: "
 set Index=
 for /f "skip=1" %%a in ('wmic nic where "NetConnectionID='%InterfaceName%'" get Index') do (
@@ -414,7 +417,7 @@ goto USE-CUSTOM-DNS
 :QUAD9-DNS
 @echo off
 setlocal EnableDelayedExpansion
-color 03
+color 3F
 set /p "InterfaceName=Enter the name of the interface: "
 set Index=
 for /f "skip=1" %%a in ('wmic nic where "NetConnectionID='%InterfaceName%'" get Index') do (
@@ -440,7 +443,7 @@ goto USE-CUSTOM-DNS
 :RESET-DNS
 @echo off
 setlocal EnableDelayedExpansion
-color 03
+color 3F
 set /p "InterfaceName=Enter the name of the interface: "
 set Index=
 for /f "skip=1" %%a in ('wmic nic where "NetConnectionID='%InterfaceName%'" get Index') do (
@@ -485,19 +488,53 @@ echo.
 pause
 goto MENU
 
+:BLOCK-TELEMETRY
+color F0
+echo Blocking Windows Telemetry
+echo.
+echo [1] Block Windows Telemetry
+echo [2] Unblock Windows Telemetry
+echo [3] Back to main menu
+echo.
+set /p telemetry=Enter your choice:
+if "%telemetry%"=="1" goto BLOCK-TELEMETRY
+if "%telemetry%"=="2" goto BLOCK-TELEMETRY
+if "%telemetry%"=="3" goto MENU
+echo Invalid option.
+
+:BLOCK-TELEMETRY
+@echo off
+color F0
+echo Blocking Windows Telemetry
+echo.
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f
+echo Windows Telemetry blocked successfully.
+timeout /t 5
+goto MENU
+
+:UNBLOCK-TELEMETRY
+@echo off
+color F0
+echo Unblocking Windows Telemetry
+echo.
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v AllowTelemetry /t REG_DWORD /d 1 /f
+echo Windows Telemetry unblocked successfully.
+timeout /t 5
+goto MENU
+
 :END
 @echo off
 cls
-color 0E
+color 1F
 echo =======================================
 echo THANK YOU FOR USING %projectUpperCase% TOOL
 echo =======================================
 echo.
-echo - DEVELOPER : %developer%
-echo - EMAIL : %email%
-echo - WEBSITE : %author-website%
-echo - VERSION : %version%
-echo - CREATED DATE : %created-date%
+echo - DEVELOPER     :   %developer%
+echo - EMAIL         :   %email%
+echo - WEBSITE       :   %author-website%
+echo - VERSION       :   %version%
+echo - CREATED DATE  :   %created-date%
 echo.
 echo - Opensource Software License agreement for windows distribution system (https://www.gnu.org/licenses/gpl-3.0.en.html)
 echo - Copying and distribution of this file, with or without modification, are permitted in any medium without royalty provided the copyright notice and this notice are preserved.
