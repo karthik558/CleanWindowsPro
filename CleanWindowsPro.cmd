@@ -98,9 +98,9 @@ echo 3. Clear System Restore Points (Not Recommended)
 echo 4. Repair Damaged System Files
 echo 5. Clear DNS Cache (Recommended)
 echo 6. Use Custom DNS Server (Optional)
-echo 7. Exit
-echo 8. EULA (End User License Agreement)
-echo 9. Block Windows Telemetry (Optional)
+echo 7. EULA (End User License Agreement)
+echo 8. Block Windows Telemetry (Optional)
+echo 9. Exit
 echo.
 set /p option="Enter your selection: "
 
@@ -110,9 +110,9 @@ if "%option%"=="3" goto CLEAR-SYSTEM-RESTORE-POINTS
 if "%option%"=="4" goto REPAIR-DAMAGED-SYSTEM-FILES
 if "%option%"=="5" goto CLEAR-DNS-CACHE
 if "%option%"=="6" goto USE-CUSTOM-DNS
-if "%option%"=="7" goto END
-if "%option%"=="8" goto EULA
-if "%option%"=="9" goto BLOCK-TELEMETRY
+if "%option%"=="7" goto EULA
+if "%option%"=="8" goto BLOCK-TELEMETRY
+if "%option%"=="9" goto END
 echo Invalid option.
 goto MENU
 
