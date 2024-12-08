@@ -6,8 +6,7 @@ set "email=dev@karthiklal.in"
 set "project=CleanWindowsPro"
 set "projectUpperCase=CLEANWINDOWSPRO"
 set "created-date=10-06-2022"
-set "current-date=%date%"
-set "version=2.5.0"
+set "version=2.6"
 set "copy-right=(C) 2022-2024 %developer%"
 set "author-website=karthiklal.in"
 
@@ -94,27 +93,29 @@ echo =======================================
 echo.
 echo 1. Fully Automate (Recommended)
 echo 2. Clear Temporary Files (Quick-Clean)
-echo 3. Clear System Restore Points (Not Recommended)
-echo 4. Repair Damaged System Files
-echo 5. Clear DNS Cache (Recommended)
-echo 6. Use Custom DNS Server (Optional)
-echo 7. EULA (End User License Agreement)
-echo 8. Block Windows Telemetry (Optional)
-echo 9. Clear all browser cache and Cookies (Optional)
-echo 10. Exit
+echo 3. Create System Restore Point (Recommended)
+echo 4. Clear System Restore Points (Not Recommended)
+echo 5. Repair Damaged System Files
+echo 6. Clear DNS Cache (Recommended)
+echo 7. Use Custom DNS Server (Optional)
+echo 8. EULA (End User License Agreement)
+echo 9. Block Windows Telemetry (Optional)
+echo 10. Clear all browser cache and Cookies (Optional)
+echo 11. Exit
 echo.
 set /p option="Enter your selection: "
 
 if "%option%"=="1" goto AUTOMATE
 if "%option%"=="2" goto CLEAR-TEMPS
-if "%option%"=="3" goto CLEAR-SYSTEM-RESTORE-POINTS
-if "%option%"=="4" goto REPAIR-DAMAGED-SYSTEM-FILES
-if "%option%"=="5" goto CLEAR-DNS-CACHE
-if "%option%"=="6" goto USE-CUSTOM-DNS
-if "%option%"=="7" goto EULA
-if "%option%"=="8" goto BLOCK-TELEMETRY
-if "%option%"=="9" goto CLEAR-BROWSER-CACHE
-if "%option%"=="10" goto END
+if "%option%"=="3" goto CREATE-SYSTEM-RESTORE-POINT
+if "%option%"=="4" goto CLEAR-SYSTEM-RESTORE-POINTS
+if "%option%"=="5" goto REPAIR-DAMAGED-SYSTEM-FILES
+if "%option%"=="6" goto CLEAR-DNS-CACHE
+if "%option%"=="7" goto USE-CUSTOM-DNS
+if "%option%"=="8" goto EULA
+if "%option%"=="9" goto BLOCK-TELEMETRY
+if "%option%"=="10" goto CLEAR-BROWSER-CACHE
+if "%option%"=="11" goto END
 
 echo Invalid option.
 goto MENU
@@ -136,6 +137,11 @@ if /i "%Explorer_Answer%" == "Y" (
 :CONTINUE_AUTOMATE
     echo Continuing the script...
     timeout /t 1    
+
+@REM Empty the recycle bin
+echo Emptying the recycle bin
+powershell -Command "Clear-RecycleBin -Force -ErrorAction Ignore"
+timeout /t 1
 
 @REM Clear the DNS cache
 echo Clearing DNS cache
@@ -259,6 +265,14 @@ del /f /s /q "%userprofile%\recent\*.*"
 del /f /s /q "%userprofile%\local settings\history\*.*"
 @REM del /f /s /q "%userprofile%\local settings\temp\*.*"
 del /f /s /q %windir%\prefetch\*.* 
+timeout /t 5
+echo Done!
+goto MENU
+
+:CREATE-SYSTEM-RESTORE-POINT
+color F0
+echo Creating system restore point
+wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "RestorePointName", 100, 7
 timeout /t 5
 echo Done!
 goto MENU
