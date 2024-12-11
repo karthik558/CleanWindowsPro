@@ -258,6 +258,12 @@ goto MENU
 
 :CLEAR-TEMPS
 color 1F
+
+@REM Empty the recycle bin
+echo Emptying the recycle bin
+powershell -Command "Clear-RecycleBin -Force -ErrorAction Ignore"
+timeout /t 1
+
 echo Clearing temp, %temp%, %tmp%, recent and prefetch folders
 del /f /s /q %systemdrive%\*.tmp
 rd /s /q %windir%\temp & md %windir%\temp 
